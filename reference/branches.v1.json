@@ -2,7 +2,11 @@
   "swagger": "2.0",
   "info": {
     "title": "branches",
-    "version": "1.0"
+    "version": "1.0",
+    "contact": {
+      "name": "BATMAN"
+    },
+    "description": "Branches"
   },
   "host": "localhost:3000",
   "schemes": [
@@ -14,7 +18,34 @@
   "consumes": [
     "application/json"
   ],
-  "paths": {},
+  "paths": {
+    "/branches": {
+      "get": {
+        "summary": "Get Branches",
+        "tags": [
+          "Branch"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "../models/test.v1.yaml"
+            }
+          }
+        },
+        "operationId": "get-branches",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {},
+            "description": ""
+          }
+        ],
+        "description": "Get Branches"
+      }
+    }
+  },
   "definitions": {},
   "basePath": "/v1"
 }
