@@ -18,6 +18,12 @@
   "consumes": [
     "application/json"
   ],
+  "tags": [
+    {
+      "name": "Branch",
+      "description": "Endpoint for getting Branch data"
+    }
+  ],
   "paths": {
     "/branches": {
       "get": {
@@ -41,7 +47,7 @@
         ],
         "description": "Get Branches",
         "tags": [
-          "Beanch"
+          "Branch"
         ]
       }
     }
