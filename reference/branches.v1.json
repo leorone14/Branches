@@ -22,14 +22,11 @@
     "/branches": {
       "get": {
         "summary": "Get Branches",
-        "tags": [
-          "Branch"
-        ],
         "responses": {
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "../models/test.v1.yaml"
+              "$ref": "../models/branches-model.v1.yaml"
             }
           }
         },
@@ -42,7 +39,10 @@
             "description": ""
           }
         ],
-        "description": "Get Branches"
+        "description": "Get Branches",
+        "tags": [
+          "Beanch"
+        ]
       }
     }
   },
