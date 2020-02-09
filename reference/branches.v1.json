@@ -3,10 +3,7 @@
   "info": {
     "title": "branches",
     "version": "1.0",
-    "contact": {
-      "name": "BATMAN"
-    },
-    "description": "Branches"
+    "description": ""
   },
   "host": "localhost:3000",
   "schemes": [
@@ -18,40 +15,7 @@
   "consumes": [
     "application/json"
   ],
-  "tags": [
-    {
-      "name": "Branch",
-      "description": "Endpoint for getting Branch data"
-    }
-  ],
-  "paths": {
-    "/branches": {
-      "get": {
-        "summary": "Get Branches",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "../models/branches-model.v1.yaml"
-            }
-          }
-        },
-        "operationId": "get-branches",
-        "parameters": [
-          {
-            "in": "body",
-            "name": "body",
-            "schema": {},
-            "description": ""
-          }
-        ],
-        "description": "Get Branches",
-        "tags": [
-          "Branch"
-        ]
-      }
-    }
-  },
+  "paths": {},
   "definitions": {},
   "basePath": "/v1"
 }
