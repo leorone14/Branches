@@ -1,0 +1,2875 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.4",
+    "title": "SixCards",
+    "description": "API allowing the access to the six card management system."
+  },
+  "host": "sdal030l.bgl.lu:8165",
+  "basePath": "/cetrel/webservices/lu/cetrel/commonws/services/modificationlimitetemp/ModificationLimiteTemp.jws",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/card/limit/temporary/put": {
+      "post": {
+        "description": "This service allows the definition of a temporary use and activity limit for a card account or contract, for a determined period.The period is specified by a start date and an end date that must be later than the start date.This service may also be re-used to delete a temporary limit. (no period defined)The \"-1.00\" value for a limit allows it to be indicated that this limit is ignored and that the checks must be made on the standard limits of the contract or card account.This allows the specification of only one temporary limit. To temporarily increase the usage limit, without impacting on the activity checks, for example, the following values should be given: Temporary usage limit: \"X\". Temporary activity limit: -1.00.The temporary limit is only taken into account for limits defined as standard and if the verification flag is set. If, for example, a contract, in its activity verification, defines an ATM limit but no POS or CASH limits, a temporary activity limit will only apply to the ATM.",
+        "summary": "Change temporary limit of card",
+        "operationId": "changeTemporaryLimit",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "SEC_TOKEN",
+            "type": "string",
+            "description": "Security Token",
+            "in": "header",
+            "required": true
+          },
+          {
+            "name": "X-Bgl-Monitoring-PropagationId",
+            "type": "string",
+            "description": "Propagation Id",
+            "in": "header",
+            "required": true
+          },
+          {
+            "name": "X-Bgl-Monitoring-Path",
+            "type": "string",
+            "description": "Current monitoring Path",
+            "in": "header",
+            "required": true
+          },
+          {
+            "name": "X-Bgl-Monitoring-To",
+            "type": "string",
+            "description": "Monitoring \"To application\"",
+            "in": "header",
+            "required": true
+          },
+          {
+            "name": "temporayLimitInput",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ModificationLimiteTempInput"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ModificationLimiteOutput"
+            }
+          },
+          "400": {
+            "description": "Error in retrieving response",
+            "schema": {
+              "$ref": "#/definitions/Fault"
+            }
+          }
+        },
+        "security": [],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    },
+    "/card/get": {
+      "post": {
+        "description": "This service allows getting back information for the card, the card account and the contract account",
+        "summary": "Get card details",
+        "operationId": "getCardDetails",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "SEC_TOKEN",
+            "type": "string",
+            "description": "Security Token",
+            "in": "header",
+            "required": true
+          },
+          {
+            "name": "X-Bgl-Monitoring-PropagationId",
+            "type": "string",
+            "description": "Propagation Id",
+            "in": "header",
+            "required": true
+          },
+          {
+            "name": "X-Bgl-Monitoring-Path",
+            "type": "string",
+            "description": "Current monitoring Path",
+            "in": "header",
+            "required": true
+          },
+          {
+            "name": "X-Bgl-Monitoring-To",
+            "type": "string",
+            "description": "Monitoring \"To application\"",
+            "in": "header",
+            "required": true
+          },
+          {
+            "name": "cardInput",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/GetCardDetailsInput"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/GetCardDetailsOutput"
+            }
+          },
+          "400": {
+            "description": "Error in retrieving response",
+            "schema": {
+              "$ref": "#/definitions/Fault"
+            }
+          }
+        },
+        "security": [],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    },
+    "/card/data/get": {
+      "post": {
+        "summary": "Get Card Data",
+        "operationId": "getCardData",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "SEC_TOKEN",
+            "type": "string",
+            "description": "Security Token",
+            "in": "header",
+            "required": true
+          },
+          {
+            "name": "X-Bgl-Monitoring-PropagationId",
+            "type": "string",
+            "description": "Propagation Id",
+            "in": "header",
+            "required": true
+          },
+          {
+            "name": "X-Bgl-Monitoring-Path",
+            "type": "string",
+            "description": "Current monitoring Path",
+            "in": "header",
+            "required": true
+          },
+          {
+            "name": "X-Bgl-Monitoring-To",
+            "type": "string",
+            "description": "Monitoring \"To application\"",
+            "in": "header",
+            "required": true
+          },
+          {
+            "name": "cardDataInput",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/GetCardDataInput"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/GetCardDataOutput"
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Error in retrieving response",
+            "schema": {
+              "$ref": "#/definitions/Fault"
+            }
+          }
+        }
+      }
+    },
+    "/card/signaletique/put": {
+      "post": {
+        "summary": "Card's data modification.",
+        "operationId": "changeIdentifyingData",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "SEC_TOKEN",
+            "type": "string",
+            "description": "Security Token",
+            "in": "header",
+            "required": true
+          },
+          {
+            "name": "X-Bgl-Monitoring-PropagationId",
+            "type": "string",
+            "description": "Propagation Id",
+            "in": "header",
+            "required": true
+          },
+          {
+            "name": "X-Bgl-Monitoring-Path",
+            "type": "string",
+            "description": "Current monitoring Path",
+            "in": "header",
+            "required": true
+          },
+          {
+            "name": "X-Bgl-Monitoring-To",
+            "type": "string",
+            "description": "Monitoring \"To application\"",
+            "in": "header",
+            "required": true
+          },
+          {
+            "name": "cardInput",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ModificationSignaletiqueInput"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ModificationSignaletiqueOutput"
+            },
+            "headers": {}
+          },
+          "default": {
+            "description": "Error in retrieving response",
+            "schema": {
+              "$ref": "#/definitions/Fault"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "ModificationLimiteTempInput": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string"
+        },
+        "data": {
+          "properties": {
+            "UserName": {
+              "description": "The user name is provided by CETREL and must be declared in the system beforehand. It will be used in the audit fields in order to be able to trace any update in the database.",
+              "type": "string"
+            },
+            "IssuerBankCode": {
+              "description": "Client’s bank code",
+              "type": "string"
+            },
+            "RequestId": {
+              "description": "This tag permits the unique identification of each request. When receiving a request, the first action is to verify if this request, identified by this field value, has already been recorded.If this request has already been processed, the answer is immediately returned indicating that the request has already been submitted. The answer contains the result of the initial request. Otherwise, the request is processed and the result is recorded together with the RequestId value and the client’s bank code. Upper-case and lower-case letter are distinguished for the RequestId value.",
+              "type": "string"
+            },
+            "CardNumber": {
+              "description": "PAN card number from 16 to 19 digit",
+              "type": "string"
+            },
+            "CardExpiryDate": {
+              "description": "Expiration date of the card (YYYY-MM-DDThh:mm:ssZ)",
+              "type": "string",
+              "format": "date-time"
+            },
+            "CardSeqNumber": {
+              "description": "Sequence number of the card on 3 digits (###)",
+              "type": "string"
+            },
+            "ActionCP": {
+              "description": "The type of update. This information allows it to be specified to what the modifications of the limits apply to:“C”: modification of the contract, “P”: modification of the card. The available verification flag corresponding to the type of update must be activated.",
+              "type": "string",
+              "enum": [
+                "C",
+                "P"
+              ]
+            },
+            "TmpUsageLimit": {
+              "description": "The amounts must be provided without decimal delimiter in the currency accuracy. For example, for an amount of €1,000.00 (one thousand euros), the amount should be 100000.The amount must be greater than or equal to 0, with 0 meaning that the limit is not taken into account.",
+              "type": "string"
+            },
+            "TmpActivityLimit": {
+              "description": "The amounts must be provided without decimal delimiter in the currency accuracy.For example, for an amount of €1,000.00 (one thousand euros), the amount should be 100000.The amount must be greater than or equal to 0, or be valued at -1, which means that the limit is not taken into account",
+              "type": "string"
+            },
+            "StartDate": {
+              "description": "if StartDate exist EndDate has to be defined,To re-set temporary limits, the service must be called up without the amounts or the period start and end dates. format YYYY-MM-DDThh:mm:ssZ",
+              "type": "string",
+              "format": "date-time"
+            },
+            "EndDate": {
+              "description": "if EndDate exist StartDate has to be defined,To re-set temporary limits, the service must be called up without the amounts or the period start and end dates. format YYYY-MM-DDThh:mm:ssZ",
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          "required": [
+            "UserName",
+            "IssuerBankCode",
+            "RequestId",
+            "CardNumber",
+            "CardExpiryDate",
+            "CardSeqNumber",
+            "ActionCP"
+          ]
+        }
+      }
+    },
+    "ModificationLimiteOutput": {
+      "title": "ModificationLimiteOutput",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "ResultCode": {
+          "description": "Processing result 0:  Execution OK, 1:  Execution OK but a warning has been generated, 2:  Execution OK but the request has already been recorded, 3:  Execution OK but the request is already recorded with a warning, -1:  Execution error,-2: Request already recorded and having generated an error (already existing RequestId)",
+          "type": "integer",
+          "enum": [
+            -2,
+            -1,
+            0,
+            1,
+            2,
+            3
+          ]
+        },
+        "ErrorCode": {
+          "description": "Error code in case of error or warning",
+          "type": "string"
+        },
+        "ErrorMessage": {
+          "description": "Error message description",
+          "type": "string"
+        },
+        "ErrorContext": {
+          "description": "Specific error message giving the context",
+          "type": "string"
+        },
+        "FunctionName": {
+          "description": "Name of the function having generated the error",
+          "type": "string"
+        }
+      },
+      "required": [
+        "ResultCode",
+        "ErrorCode",
+        "ErrorMessage",
+        "ErrorContext",
+        "FunctionName"
+      ]
+    },
+    "ModificationLimiteActInput": {
+      "title": "ModificationLimiteActInput",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string"
+        },
+        "data": {
+          "properties": {
+            "UserName": {
+              "description": "",
+              "type": "string"
+            },
+            "IssuerBankCode": {
+              "description": "",
+              "type": "string"
+            },
+            "RequestId": {
+              "description": "",
+              "type": "string"
+            },
+            "CardNumber": {
+              "description": "",
+              "type": "string"
+            },
+            "CardExpiryDate": {
+              "description": "",
+              "type": "string",
+              "format": "date-time"
+            },
+            "CardSeqNumber": {
+              "description": "",
+              "type": "string"
+            },
+            "ActionCP": {
+              "description": "",
+              "type": "string"
+            },
+            "DayAcvATM": {
+              "description": "",
+              "type": "string"
+            },
+            "DayAcvPOS": {
+              "description": "",
+              "type": "string"
+            },
+            "DayAcvCASH": {
+              "description": "",
+              "type": "string"
+            },
+            "DayAcvATMExt": {
+              "description": "",
+              "type": "string"
+            },
+            "DayAcvPOSExt": {
+              "description": "",
+              "type": "string"
+            },
+            "DayAcvCASHExt": {
+              "description": "",
+              "type": "string"
+            },
+            "WeekAcvATM": {
+              "description": "",
+              "type": "string"
+            },
+            "WeekAcvPOS": {
+              "description": "",
+              "type": "string"
+            },
+            "WeekAcvCASH": {
+              "description": "",
+              "type": "string"
+            },
+            "WeekAcvATMExt": {
+              "description": "",
+              "type": "string"
+            },
+            "WeekAcvPOSExt": {
+              "description": "",
+              "type": "string"
+            },
+            "WeekAcvCASHExt": {
+              "description": "",
+              "type": "string"
+            }
+          },
+          "required": [
+            "UserName",
+            "IssuerBankCode",
+            "RequestId",
+            "CardNumber",
+            "CardExpiryDate",
+            "CardSeqNumber",
+            "ActionCP",
+            "DayAcvATM",
+            "DayAcvPOS",
+            "DayAcvCASH",
+            "DayAcvATMExt",
+            "DayAcvPOSExt",
+            "DayAcvCASHExt",
+            "WeekAcvATM",
+            "WeekAcvPOS",
+            "WeekAcvCASH",
+            "WeekAcvATMExt",
+            "WeekAcvPOSExt",
+            "WeekAcvCASHExt"
+          ]
+        }
+      }
+    },
+    "ModificationLimiteDispoInput": {
+      "title": "ModificationLimiteDispoInput",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string"
+        },
+        "data": {
+          "properties": {
+            "UserName": {
+              "description": "",
+              "type": "string"
+            },
+            "IssuerBankCode": {
+              "description": "",
+              "type": "string"
+            },
+            "RequestId": {
+              "description": "",
+              "type": "string"
+            },
+            "CardNumber": {
+              "description": "",
+              "type": "string"
+            },
+            "CardExpiryDate": {
+              "description": "",
+              "type": "string",
+              "format": "date-time"
+            },
+            "CardSeqNumber": {
+              "description": "",
+              "type": "string"
+            },
+            "ActionCP": {
+              "description": "",
+              "type": "string"
+            },
+            "UsageLimit": {
+              "description": "",
+              "type": "string"
+            },
+            "CreditLimit": {
+              "description": "",
+              "type": "string"
+            }
+          },
+          "required": [
+            "UserName",
+            "IssuerBankCode",
+            "RequestId",
+            "CardNumber",
+            "CardExpiryDate",
+            "CardSeqNumber",
+            "ActionCP",
+            "UsageLimit",
+            "CreditLimit"
+          ]
+        }
+      }
+    },
+    "GetCardDetailsInput": {
+      "title": "GetCardDetailsInput",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string"
+        },
+        "data": {
+          "properties": {
+            "UserName": {
+              "description": "The user name is provided by CETREL and must be declared in the system beforehand. It will be used in the audit fields in order to be able to trace any update in the database.",
+              "type": "string"
+            },
+            "IssuerBankCode": {
+              "description": "Client’s bank code",
+              "type": "string"
+            },
+            "RequestId": {
+              "description": "This tag permits the unique identification of each request. When receiving a request, the first action is to verify if this request, identified by this field value, has already been recorded.If this request has already been processed, the answer is immediately returned indicating that the request has already been submitted. The answer contains the result of the initial request. Otherwise, the request is processed and the result is recorded together with the RequestId value and the client’s bank code. Upper-case and lower-case letter are distinguished for the RequestId value.",
+              "type": "string"
+            },
+            "CardNumber": {
+              "description": "PAN card number from 16 to 19 digit",
+              "type": "string"
+            },
+            "CardExpiryDate": {
+              "description": "Expiration date of the card (YYYY-MM-DDThh:mm:ssZ)",
+              "type": "string",
+              "format": "date-time"
+            },
+            "CardSeqNumber": {
+              "description": "Sequence number of the card on 3 digits (###)",
+              "type": "string"
+            }
+          },
+          "required": [
+            "UserName",
+            "IssuerBankCode",
+            "RequestId",
+            "CardNumber",
+            "CardExpiryDate",
+            "CardSeqNumber"
+          ]
+        }
+      }
+    },
+    "GetCardDetailsOutput": {
+      "title": "GetCardDetailsOutput",
+      "description": "Card''s details",
+      "type": "object",
+      "properties": {
+        "ResultCode": {
+          "description": "Processing result",
+          "type": "string"
+        },
+        "ErrorCode": {
+          "description": "Error code in case of error or warning",
+          "type": "string"
+        },
+        "ErrorMessage": {
+          "description": "Error message description ",
+          "type": "string"
+        },
+        "ErrorContext": {
+          "description": "Specific error message giving the context",
+          "type": "string"
+        },
+        "FunctionName": {
+          "description": "Name of the function having generated the error",
+          "type": "string"
+        },
+        "CardNumber": {
+          "description": "Card number",
+          "type": "string"
+        },
+        "CardSeqNumber": {
+          "description": "Card Sequence number",
+          "type": "string"
+        },
+        "CardStatus": {
+          "description": "Status of the card",
+          "type": "string"
+        },
+        "CardExpiryDate": {
+          "description": "Expiry date",
+          "type": "string",
+          "format": "date-time"
+        },
+        "BlockDateAndTime": {
+          "description": "Date and time when the card has been blocked",
+          "type": "string"
+        },
+        "BlockingCode": {
+          "description": "Blocking code of the card",
+          "type": "string"
+        },
+        "BlockingReason": {
+          "description": "Blocking reason of the card",
+          "type": "string"
+        },
+        "RetrievalDate": {
+          "description": "Date when the card has been retrieved",
+          "type": "string",
+          "format": "date-time"
+        },
+        "OrderDate": {
+          "description": "Card order date",
+          "type": "string",
+          "format": "date-time"
+        },
+        "OrderReason": {
+          "description": "Order reason for the card",
+          "type": "string"
+        },
+        "RepCardExpiryDate": {
+          "description": "Expiry date",
+          "type": "string",
+          "format": "date-time"
+        },
+        "RepCardNumber": {
+          "description": "Card number of the replaced card",
+          "type": "string"
+        },
+        "RepCardSeqNumber": {
+          "description": "Sequence number",
+          "type": "string"
+        },
+        "PINDateAndTime": {
+          "description": "Date and time of the PIN edition or the last PIN reissue",
+          "type": "string"
+        },
+        "PINStatus": {
+          "description": "Status of the PIN edition or reissue",
+          "type": "string"
+        },
+        "PTCValue": {
+          "description": "Current PIN try counter value",
+          "type": "integer",
+          "format": "int32"
+        },
+        "LastPTCValue": {
+          "description": "Value of the PIN try counter when reset",
+          "type": "integer",
+          "format": "int32"
+        },
+        "MaxPTCDateAndTime": {
+          "description": "Date and time corresponding to the last time the pin try counter has been reset",
+          "type": "string"
+        },
+        "Line5": {
+          "description": "Line 5 description (ECI number or calling card)",
+          "type": "string"
+        },
+        "CardAccountId": {
+          "description": "Internal unique card account identifier",
+          "type": "integer",
+          "format": "int32"
+        },
+        "CardDistributionMode": {
+          "description": "Card distribution mode",
+          "type": "string"
+        },
+        "PinDistributionMode": {
+          "description": "PIN distribution mode",
+          "type": "string"
+        },
+        "CancellationDate": {
+          "description": "Desired cancellation date",
+          "type": "string",
+          "format": "date-time"
+        },
+        "CancellationReason": {
+          "description": "Reason for cancellation",
+          "type": "string"
+        },
+        "LastSubscriptAmount": {
+          "description": "Last subscription amount",
+          "type": "number",
+          "format": "double"
+        },
+        "LastSubscriptDate": {
+          "description": "Date of the last subscription",
+          "type": "string",
+          "format": "date-time"
+        },
+        "NextSubscriptAmount": {
+          "description": "Next subscription amount",
+          "type": "number",
+          "format": "double"
+        },
+        "NextSubscriptDate": {
+          "description": "Next subscription date",
+          "type": "string",
+          "format": "date-time"
+        },
+        "ClientClass": {
+          "description": "Client class code",
+          "type": "string"
+        },
+        "SpecSubscriptFlag": {
+          "description": "Flag indicating if a specific  subscription fee applies for the cardholder",
+          "type": "string"
+        },
+        "SubscriptionCode": {
+          "description": "Card subscription fee code",
+          "type": "integer",
+          "format": "int32"
+        },
+        "AgencyCode": {
+          "description": "Bank agency code",
+          "type": "integer",
+          "format": "int32"
+        },
+        "BankReference": {
+          "description": "Bank reference",
+          "type": "string"
+        },
+        "LastUseDate": {
+          "description": "Last date the card has been used",
+          "type": "string",
+          "format": "date-time"
+        },
+        "CptCheckActivityFlag": {
+          "description": "Flag indicating if the activity limits must be checked for the card account",
+          "type": "string"
+        },
+        "CptCheckUsageFlag": {
+          "description": "Flag indicating if the usage limit must be checked for the card account",
+          "type": "string"
+        },
+        "CptUsageLimit": {
+          "description": "Card accounts: Usage limit (authorization)",
+          "type": "number",
+          "format": "double"
+        },
+        "CptDayAcvATM": {
+          "description": "ATM+Cash+Load daily total",
+          "type": "number",
+          "format": "double"
+        },
+        "CptDayAcvATMExt": {
+          "description": "ATM+Cash+Load daily total excluding CETREL",
+          "type": "number",
+          "format": "double"
+        },
+        "CptDayAcvCASH": {
+          "description": "CASH daily total",
+          "type": "number",
+          "format": "double"
+        },
+        "CptDayAcvCASHExt": {
+          "description": "CASH daily total excluding CETREL",
+          "type": "number",
+          "format": "double"
+        },
+        "CptDayAcvPOS": {
+          "description": "POS daily total",
+          "type": "number",
+          "format": "double"
+        },
+        "CptDayAcvPOSExt": {
+          "description": "POS daily total excluding CETREL",
+          "type": "number",
+          "format": "double"
+        },
+        "CptWeekAcvATM": {
+          "description": "ATM+Cash+Load weekly total",
+          "type": "number",
+          "format": "double"
+        },
+        "CptWeekAcvATMExt": {
+          "description": "ATM+Cash+Load weekly total excluding CETREL",
+          "type": "number",
+          "format": "double"
+        },
+        "CptWeekAcvCASH": {
+          "description": "CASH weekly total",
+          "type": "number",
+          "format": "double"
+        },
+        "CptWeekAcvCASHExt": {
+          "description": "CASH weekly total excluding CETREL",
+          "type": "number",
+          "format": "double"
+        },
+        "CptWeekAcvPOS": {
+          "description": "POS weekly total",
+          "type": "number",
+          "format": "double"
+        },
+        "CptWeekAcvPOSExt": {
+          "description": "POS weekly total excluding CETREL",
+          "type": "number",
+          "format": "double"
+        },
+        "CptTempActivityLimit": {
+          "description": "Temporary activity limit for the card account",
+          "type": "number",
+          "format": "double"
+        },
+        "CptTempEndDate": {
+          "description": "End date for the period during which the temporary limit must be applied",
+          "type": "string",
+          "format": "date-time"
+        },
+        "CptTempStartDate": {
+          "description": "Start date for the period during which the temporary limit must be applied",
+          "type": "string",
+          "format": "date-time"
+        },
+        "CptTempUsageLimit": {
+          "description": "Temporary usage limit for the card account",
+          "type": "number",
+          "format": "double"
+        },
+        "CardHolderId": {
+          "description": "Internal unique cardholder identifier",
+          "type": "integer",
+          "format": "int32"
+        },
+        "Quality": {
+          "description": "Status",
+          "type": "string"
+        },
+        "Title": {
+          "description": "Title",
+          "type": "string"
+        },
+        "MaidenName": {
+          "description": "Maiden name",
+          "type": "string"
+        },
+        "FirstName": {
+          "description": "First name",
+          "type": "string"
+        },
+        "AddressLine2": {
+          "description": "2nd address line: complement to the C/H name ",
+          "type": "string"
+        },
+        "AddressLine3": {
+          "description": "3rd address line: complement to the street address (building. Apartment etc.)",
+          "type": "string"
+        },
+        "AddressLine4": {
+          "description": "4th address line: street",
+          "type": "string"
+        },
+        "AddressLine5": {
+          "description": "5th address line",
+          "type": "string"
+        },
+        "PostalCode": {
+          "description": "Postal code",
+          "type": "string"
+        },
+        "CountryPostalCode": {
+          "description": "Postal code of the country (for instance F for France)",
+          "type": "string"
+        },
+        "Locality": {
+          "description": "Town",
+          "type": "string"
+        },
+        "Country": {
+          "description": "ISO country code of the cardholder",
+          "type": "integer",
+          "format": "int32"
+        },
+        "CountryName": {
+          "description": "Country name",
+          "type": "string"
+        },
+        "BirthDate": {
+          "description": "Birth date",
+          "type": "string",
+          "format": "date-time"
+        },
+        "LanguageCode": {
+          "description": "Language code",
+          "type": "integer",
+          "format": "int32"
+        },
+        "Sex": {
+          "description": "Cardholder's sex",
+          "type": "string"
+        },
+        "PhoneNumber": {
+          "description": "Phone number",
+          "type": "string"
+        },
+        "FaxNumber": {
+          "description": "Fax number",
+          "type": "string"
+        },
+        "Email": {
+          "description": "Email address",
+          "type": "string"
+        },
+        "Nationality": {
+          "description": "Cardholder nationality",
+          "type": "integer",
+          "format": "int32"
+        },
+        "Passeport": {
+          "description": "National card ID/Passport number",
+          "type": "string"
+        },
+        "SocialNumber": {
+          "description": "Social security number",
+          "type": "string"
+        },
+        "MotherName": {
+          "description": "Mother’s maiden name",
+          "type": "string"
+        },
+        "ContractId": {
+          "description": "Internal unique contract identifier",
+          "type": "integer",
+          "format": "int32"
+        },
+        "ServiceCode": {
+          "description": "Product profile code for the contract to be created",
+          "type": "integer",
+          "format": "int32"
+        },
+        "ReducedLabel": {
+          "description": "Reduced label for the product profile",
+          "type": "string"
+        },
+        "Currency": {
+          "description": "Contract currency code",
+          "type": "integer",
+          "format": "int32"
+        },
+        "IssuerBankCode": {
+          "description": "Issuer bank code",
+          "type": "string"
+        },
+        "ContractType": {
+          "description": "Type of contract",
+          "type": "string"
+        },
+        "PaymentMode": {
+          "description": "Payment mode",
+          "type": "string"
+        },
+        "ReimbMode": {
+          "description": "Reimbursement mode",
+          "type": "string"
+        },
+        "BankCode": {
+          "description": "BCL code of the bank administrating the account ",
+          "type": "string"
+        },
+        "BankAccount": {
+          "description": "Bank account number",
+          "type": "string"
+        },
+        "CrpPermanentAccount": {
+          "description": "Permanent credit bank account number",
+          "type": "string"
+        },
+        "ClearingRef": {
+          "description": "Creditor number",
+          "type": "string"
+        },
+        "CalendarCode": {
+          "description": "Calendar code used to determine the closing, deduction, statement, etc. dates",
+          "type": "string"
+        },
+        "UsageLimit": {
+          "description": "Contract Usage limit (authorization)",
+          "type": "number",
+          "format": "double"
+        },
+        "CreditLimit": {
+          "description": "Credit limit (official limit)",
+          "type": "number",
+          "format": "double"
+        },
+        "BankLimit": {
+          "description": "Bank limit ",
+          "type": "number",
+          "format": "double"
+        },
+        "CntCheckUsageFlag": {
+          "description": "Flag indicating if the usage limit must be checked for the contract",
+          "type": "string"
+        },
+        "CntCheckActivityFlag": {
+          "description": "Flag indicating if the activity  limit must be checked for the contract",
+          "type": "string"
+        },
+        "CntDayAcvATM": {
+          "description": "ATM+Cash+Load daily total",
+          "type": "number",
+          "format": "double"
+        },
+        "CntDayAcvATMExt": {
+          "description": "ATM+Cash+Load daily total excluding CETREL",
+          "type": "number",
+          "format": "double"
+        },
+        "CntDayAcvCASH": {
+          "description": "CASH daily total",
+          "type": "number",
+          "format": "double"
+        },
+        "CntDayAcvCASHExt": {
+          "description": "CASH daily total excluding CETREL",
+          "type": "number",
+          "format": "double"
+        },
+        "CntDayAcvPOS": {
+          "description": "POS daily total",
+          "type": "number",
+          "format": "double"
+        },
+        "CntDayAcvPOSExt": {
+          "description": "POS daily total excluding CETREL",
+          "type": "number",
+          "format": "double"
+        },
+        "CntWeekAcvATM": {
+          "description": "ATM+Cash+Load weekly total",
+          "type": "number",
+          "format": "double"
+        },
+        "CntWeekAcvATMExt": {
+          "description": "ATM+Cash+Load weekly total excluding CETREL",
+          "type": "number",
+          "format": "double"
+        },
+        "CntWeekAcvCASH": {
+          "description": "CASH weekly total",
+          "type": "number",
+          "format": "double"
+        },
+        "CntWeekAcvCASHExt": {
+          "description": "CASH weekly total excluding CETREL",
+          "type": "number",
+          "format": "double"
+        },
+        "CntWeekAcvPOS": {
+          "description": "POS weekly total",
+          "type": "number",
+          "format": "double"
+        },
+        "CntWeekAcvPOSExt": {
+          "description": "POS weekly total excluding CETREL",
+          "type": "number",
+          "format": "double"
+        },
+        "CntTempActivityLimit": {
+          "description": "Temporary activity limit for the contract",
+          "type": "number",
+          "format": "double"
+        },
+        "CntTempEndDate": {
+          "description": "End date for the period during which the temporary limit must be applied",
+          "type": "string",
+          "format": "date-time"
+        },
+        "CntTempStartDate": {
+          "description": "Start date for the period during which the temporary limit must be applied",
+          "type": "string",
+          "format": "date-time"
+        },
+        "CntTempUsageLimit": {
+          "description": "Temporary usage limit for the contract",
+          "type": "number",
+          "format": "double"
+        },
+        "LastName": {
+          "description": "Last Name",
+          "type": "string"
+        },
+        "AtmFlag": {
+          "description": "Use in “ATM”",
+          "type": "string"
+        },
+        "CashbackFlag": {
+          "description": "Use in “cash-back” mode",
+          "type": "string"
+        },
+        "CashFlag": {
+          "description": "Use in “Cash” mode",
+          "type": "string"
+        },
+        "CrdFlag": {
+          "description": "Use for credit operations",
+          "type": "string"
+        },
+        "LoadFlag": {
+          "description": "Use for electronic purse reload ",
+          "type": "string"
+        },
+        "SalesFlag": {
+          "description": "Use in “Sales” mode",
+          "type": "string"
+        }
+      },
+      "required": [
+        "ResultCode",
+        "ErrorCode",
+        "ErrorMessage",
+        "ErrorContext",
+        "FunctionName"
+      ]
+    },
+    "Fault": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "fields": {
+          "type": "string"
+        }
+      }
+    },
+    "GetCardDataInput": {
+      "title": "GetCardDataInput",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string"
+        },
+        "data": {
+          "properties": {
+            "UserName": {
+              "description": "ID of the user sending the request",
+              "type": "string"
+            },
+            "IssuerBankCode": {
+              "description": "For Luxembourgish Financial Institutions this code is defined by the ABBL (The Luxembourg Bankers' Association).",
+              "type": "string"
+            },
+            "RequestId": {
+              "description": "Id of the request. It must be unique for the bank.",
+              "type": "string"
+            },
+            "SearchCriteriaNumber": {
+              "description": "Code identifying the type of data contained in SearchValue This number represents an easy way to distinguish search criteria;",
+              "type": "string"
+            },
+            "SearchValue": {
+              "description": "Value corresponding to the SearchCriteriaNumber (e.g. PAN if SearchCriteriaNumber=1)\n...",
+              "type": "string"
+            },
+            "Scope": {
+              "description": "Code identifying the scope of the search above defined",
+              "type": "string"
+            },
+            "CardExpiryDate": {
+              "description": "expiry date of the card",
+              "type": "string",
+              "format": "date-time"
+            },
+            "CardSeqNumber": {
+              "description": "sequence number of the card",
+              "type": "string"
+            },
+            "RequestedData": {
+              "$ref": "#/definitions/RequestedData"
+            },
+            "Version": {
+              "description": "Version of the output format requested. Depending on the value of this parameter, the response will possibly contain additional fields. If this field is not present, it defaults to 1.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "UserName",
+            "IssuerBankCode",
+            "RequestId",
+            "SearchCriteriaNumber",
+            "SearchValue",
+            "RequestedData"
+          ]
+        }
+      }
+    },
+    "GetCardDataOutput": {
+      "title": "GetCardDataOutput",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "ResultCode": {
+          "description": "Processing result:",
+          "type": "string"
+        },
+        "ErrorCode": {
+          "description": "Error code in case of error or warning",
+          "type": "string"
+        },
+        "ErrorMessage": {
+          "description": "Error message description",
+          "type": "string"
+        },
+        "ErrorContext": {
+          "description": "Specific error message giving the context",
+          "type": "string"
+        },
+        "FunctionName": {
+          "description": "Name of the function having generated the error",
+          "type": "string"
+        },
+        "RequestId": {
+          "description": "Id of the request. It must be unique for the bank.",
+          "type": "string"
+        },
+        "DataList": {
+          "$ref": "#/definitions/CardDataListType"
+        }
+      },
+      "required": [
+        "ResultCode",
+        "ErrorCode",
+        "ErrorMessage",
+        "ErrorContext",
+        "FunctionName",
+        "RequestId"
+      ]
+    },
+    "RequestedDataType": {
+      "title": "RequestedDataType",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "Card": {
+          "$ref": "#/definitions/Card"
+        },
+        "Client": {
+          "$ref": "#/definitions/Client"
+        },
+        "Limiters": {
+          "$ref": "#/definitions/Limiters"
+        },
+        "Authorizations": {
+          "$ref": "#/definitions/Authorizations"
+        },
+        "Transactions": {
+          "$ref": "#/definitions/Transactions"
+        }
+      },
+      "required": [
+        "Card",
+        "Client",
+        "Limiters",
+        "Authorizations",
+        "Transactions"
+      ]
+    },
+    "LimitersOutputType": {
+      "title": "LimitersOutputType",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "LimiterCode": {
+          "description": "code of the limiter to return",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Fault"
+          }
+        }
+      }
+    },
+    "CardDataListType": {
+      "title": "CardDataListType",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "Data": {
+          "description": "The requested information for one of the cards matching the search criteria.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CardDataType"
+          }
+        }
+      }
+    },
+    "CardDataType": {
+      "title": "CardDataType",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "Card": {
+          "$ref": "#/definitions/CardType"
+        },
+        "Client": {
+          "$ref": "#/definitions/ClientType"
+        },
+        "LimitersList": {
+          "$ref": "#/definitions/LimitersListType"
+        },
+        "AuthorizationsList": {
+          "$ref": "#/definitions/AuthorizationsList"
+        },
+        "TransactionsList": {
+          "$ref": "#/definitions/TransactionsList"
+        }
+      }
+    },
+    "CardType": {
+      "title": "CardType",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "OrderDate": {
+          "description": "Card order date",
+          "type": "string",
+          "format": "date"
+        },
+        "OrderReason": {
+          "description": "Order reason for the card:",
+          "type": "string"
+        },
+        "EmbossingLine5": {
+          "description": "Line 5 description (ECI number or calling card)",
+          "type": "string"
+        },
+        "ContractId": {
+          "description": "Internal unique contract identifier (Issuing contract level)",
+          "type": "string"
+        },
+        "CardStatus": {
+          "description": "Status of the card:",
+          "type": "string"
+        },
+        "StatusLabel": {
+          "description": "Status label of the card contract, as it can be seen in the graphical interface.",
+          "type": "string"
+        },
+        "CardNumber": {
+          "description": "Card number (PAN).  Masked when RequestedDataType.pcidss = true",
+          "type": "string"
+        },
+        "CardExpiryDate": {
+          "description": "Card expiry date",
+          "type": "string",
+          "format": "date"
+        },
+        "CardSeqNumber": {
+          "description": "Card Sequence number",
+          "type": "string"
+        },
+        "CardAccountId": {
+          "description": "Internal unique card account identifier (Card level)",
+          "type": "string"
+        },
+        "Subscription": {
+          "$ref": "#/definitions/SubscriptionType"
+        },
+        "PreviousCard": {
+          "$ref": "#/definitions/PreviousCardType"
+        },
+        "Acceptance": {
+          "$ref": "#/definitions/AcceptanceType"
+        },
+        "Blocking": {
+          "$ref": "#/definitions/BlockingType"
+        },
+        "PhysicalPerso": {
+          "$ref": "#/definitions/PhysicalPersoType"
+        },
+        "PIN": {
+          "$ref": "#/definitions/PINType"
+        },
+        "Behavior": {
+          "$ref": "#/definitions/BehaviorType"
+        },
+        "BankAccount": {
+          "description": "Bank account number",
+          "type": "string"
+        },
+        "BankReference": {
+          "description": "Bank reference",
+          "type": "string"
+        },
+        "AgencyCode": {
+          "description": "Bank agency code",
+          "type": "string"
+        },
+        "NFCCHChoiceStatus": {
+          "description": "Status",
+          "type": "string"
+        },
+        "NFCCHChoiceDateTime": {
+          "description": "Date",
+          "type": "string",
+          "format": "date-time"
+        },
+        "NFCChipStatus": {
+          "description": "Latest",
+          "type": "string"
+        },
+        "NFCChipDateTime": {
+          "description": "Date",
+          "type": "string",
+          "format": "date-time"
+        },
+        "FundingCode": {
+          "description": "Optional code used by the new funding interface to separate the daily detailed funding by legal entity. (cf file interface \"Funding\")",
+          "type": "string"
+        },
+        "IssuingContract": {
+          "$ref": "#/definitions/IssuingContractType"
+        },
+        "Tokens": {
+          "$ref": "#/definitions/TokenDetailsListType"
+        }
+      },
+      "required": [
+        "OrderDate",
+        "OrderReason",
+        "ContractId",
+        "CardStatus",
+        "StatusLabel",
+        "CardNumber",
+        "CardExpiryDate",
+        "CardSeqNumber",
+        "CardAccountId",
+        "Subscription",
+        "Acceptance",
+        "Blocking",
+        "PhysicalPerso",
+        "PIN",
+        "Behavior"
+      ]
+    },
+    "PreviousCardType": {
+      "title": "PreviousCardType",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "RepCardAccountId": {
+          "description": "Internal unique card account identifier (Card level)",
+          "type": "string"
+        },
+        "RepCardNumber": {
+          "description": "Card number (PAN) of the card that has been replaced by this one.  Masked when RequestedDataType.pcidss = true",
+          "type": "string"
+        },
+        "RepCardExpiryDate": {
+          "description": "Expiry date of the card that has been replaced by this one",
+          "type": "string",
+          "format": "date"
+        },
+        "RepCardSeqNumber": {
+          "description": "Sequence number of the card that has been replaced by this one",
+          "type": "string"
+        }
+      }
+    },
+    "IssuingContractType": {
+      "title": "IssuingContractType",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "ContractIdentifier": {
+          "description": "Alphanumeric technical id (solely managed by SPS) of the issuing contract (parent of the card)",
+          "type": "string"
+        },
+        "CardHolderIdentifier": {
+          "description": "Alphanumeric technical id (solely managed by SPS) of the Client attached to the Issuing Contract",
+          "type": "string"
+        },
+        "ContractBankReference": {
+          "description": "Issuing contract bank reference",
+          "type": "string"
+        },
+        "ClientBankReference": {
+          "description": "Bank reference of the Client linked to the Issuing Contract",
+          "type": "string"
+        }
+      }
+    },
+    "SubscriptionType": {
+      "title": "SubscriptionType",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "SpecSubscriptFlag": {
+          "description": "Flag indicating if a specific fees tariff applies for the cardholder:",
+          "type": "string"
+        },
+        "SubscriptionCode": {
+          "description": "Card fees tariff code. The value is significant only if the tag \"SpecSubscriptFlag\" is set to \"O\".",
+          "type": "integer",
+          "format": "int32"
+        },
+        "NextSubscriptDate": {
+          "description": "Next subscription date",
+          "type": "string",
+          "format": "date"
+        },
+        "NextSubscriptAmount": {
+          "description": "Next subscription amount. The amounts are signed.",
+          "type": "number",
+          "format": "double"
+        },
+        "LastSubscriptDate": {
+          "description": "Date of the last subscription",
+          "type": "string",
+          "format": "date"
+        },
+        "LastSubscriptAmount": {
+          "description": "Last subscription amount.",
+          "type": "number",
+          "format": "double"
+        }
+      },
+      "required": [
+        "SpecSubscriptFlag"
+      ]
+    },
+    "AcceptanceType": {
+      "title": "AcceptanceType",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "UsageLimit": {
+          "description": "Permanent Usage limit (authorization) of the contract. The limit amounts can have the following values:",
+          "type": "number",
+          "format": "double"
+        },
+        "CurrentUsageLimit": {
+          "description": "Permanent Usage Limit + Temporary Usage Limit (if exists) of the contract. The limit amounts can have the following values:",
+          "type": "number",
+          "format": "double"
+        },
+        "CreditLimit": {
+          "description": "Permanent Credit limit (official limit) of the contract. The limit amounts can have the following values:",
+          "type": "number",
+          "format": "double"
+        },
+        "CurrentCreditLimit": {
+          "description": "Permanent Credit Limit + Temporary Credit Limit of the contract. The limit amounts can have the following values:",
+          "type": "number",
+          "format": "double"
+        },
+        "CptUsageLimit": {
+          "description": "Usage limit (authorization) for the card account. The limit amounts can have the following values:",
+          "type": "number",
+          "format": "double"
+        },
+        "BankLimit": {
+          "description": "Value for the bank limit. The bank limit indicates the remaining amount on \nthe pre-paid account when no authorization and no operations are pending.",
+          "type": "number",
+          "format": "double"
+        },
+        "AvailableAmount": {
+          "description": "Amount available at Issuing contract level",
+          "type": "number",
+          "format": "double"
+        },
+        "PendingAutoTotAmount": {
+          "description": "Total amount of the pending authorizations on the cards linked to the issuing contract. Pending authorizations are authorizations that have not been reconciled.",
+          "type": "number",
+          "format": "double"
+        },
+        "PendingOprTotAmount": {
+          "description": "Total amount of the pending operations on the cards linked to the issuing contract. Total Amount of the operations not yet transmitted, i.e. not recorded in the output file.",
+          "type": "number",
+          "format": "double"
+        },
+        "OwnPendingAutoTotAmount": {
+          "description": "Total amount of the pending authorizations on the card. Pending authorizations are authorizations that have not been reconciled.",
+          "type": "number",
+          "format": "double"
+        },
+        "OwnPendingOprTotAmount": {
+          "description": "Total amount of the pending operations on the card. Total Amount of the operations not yet transmitted, i.e. not recorded in the output file.",
+          "type": "number",
+          "format": "double"
+        }
+      },
+      "required": [
+        "UsageLimit",
+        "CreditLimit",
+        "CptUsageLimit",
+        "BankLimit",
+        "AvailableAmount",
+        "PendingAutoTotAmount",
+        "PendingOprTotAmount",
+        "OwnPendingAutoTotAmount",
+        "OwnPendingOprTotAmount"
+      ]
+    },
+    "BlockingType": {
+      "title": "BlockingType",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "BlockingReason": {
+          "description": "Blocking reason of the card:",
+          "type": "string"
+        },
+        "BlockingCode": {
+          "description": "Blocking code of the card:",
+          "type": "string"
+        },
+        "BlockDateAndTime": {
+          "description": "Date and time when the card has been blocked.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "CancellationReason": {
+          "description": "Reason for cancellation:",
+          "type": "string"
+        },
+        "CancellationDate": {
+          "description": "Desired cancellation date",
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "PhysicalPersoType": {
+      "title": "PhysicalPersoType",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "ManufacturingStatus": {
+          "description": "Status of the physical card personalization.  Information provided by the personalization office, may not be accurated.",
+          "type": "string"
+        },
+        "ManufacturingDateTime": {
+          "description": "Date and timeof the physical card personalization.  Information provided by the personalization office, may not be accurated.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "CardDistributionMode": {
+          "description": "Card distribution mode:",
+          "type": "string"
+        }
+      }
+    },
+    "BehaviorType": {
+      "title": "BehaviorType",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "ServiceCode": {
+          "description": "Product profile code for the contract to be created",
+          "type": "string"
+        },
+        "ReimbMode": {
+          "description": "Reimbursement mode:",
+          "type": "string"
+        },
+        "PaymentMode": {
+          "description": "Payment mode:",
+          "type": "string"
+        },
+        "ClearingRef": {
+          "description": "Creditor number",
+          "type": "string"
+        },
+        "ContractType": {
+          "description": "Type of contract:",
+          "type": "string"
+        },
+        "Currency": {
+          "description": "Contract's currency code (3 figures)",
+          "type": "string"
+        }
+      },
+      "required": [
+        "ServiceCode",
+        "ReimbMode",
+        "PaymentMode",
+        "ContractType",
+        "Currency"
+      ]
+    },
+    "PINType": {
+      "title": "PINType",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "PINDateAndTime": {
+          "description": "Date and time of the PIN edition or the last PIN reissue.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "PinDistributionMode": {
+          "description": "PIN distribution mode:",
+          "type": "string"
+        },
+        "PINStatus": {
+          "description": "Status of the PIN edition or reissue:",
+          "type": "string"
+        },
+        "PTCValue": {
+          "description": "Current PIN try counter value",
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "PTCValue"
+      ]
+    },
+    "ClientType": {
+      "title": "ClientType",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "BirthDate": {
+          "description": "Birth date of the cardholder",
+          "type": "string",
+          "format": "date"
+        },
+        "Title": {
+          "description": "Title of the cardholder (salutation used for embossing)",
+          "type": "string"
+        },
+        "ClientClass": {
+          "description": "Client class code",
+          "type": "string"
+        },
+        "Passeport": {
+          "description": "National card ID/Passport number of the cardholder",
+          "type": "string"
+        },
+        "SocialNumber": {
+          "description": "Social security number of the cardholder",
+          "type": "string"
+        },
+        "Sex": {
+          "description": "Cardholder's sex",
+          "type": "string"
+        },
+        "Quality": {
+          "description": "Status of the cardholder (salutation). The Quality is a mandatory free text attribute and may have any value other than SPACES.\nThe attribute is used to derive the cardholder’s sex as follows :",
+          "type": "string"
+        },
+        "Nationality": {
+          "description": "Cardholder's nationality",
+          "type": "string"
+        },
+        "MotherName": {
+          "description": "Maiden name of the cardholder's mother",
+          "type": "string"
+        },
+        "MaidenName": {
+          "description": "Maiden name of the cardholder",
+          "type": "string"
+        },
+        "LastName": {
+          "description": "Family name of the cardholder",
+          "type": "string"
+        },
+        "LanguageIsoCode": {
+          "description": "ISO 639-1 language code of the cardholder.",
+          "type": "string"
+        },
+        "FirstName": {
+          "description": "First name of the cardholder",
+          "type": "string"
+        },
+        "ClientId": {
+          "description": "Internal unique cardholder identifier",
+          "type": "string"
+        },
+        "CardHolderIdentifier": {
+          "description": "Alphanumeric technical id (solely managed by SPS) of the Client attached to the Card Contract",
+          "type": "string"
+        },
+        "ClientBankReference": {
+          "description": "Bank reference of the Client linked to the Card Contract",
+          "type": "string"
+        },
+        "Contact": {
+          "$ref": "#/definitions/ContactType"
+        }
+      },
+      "required": [
+        "BirthDate",
+        "LastName",
+        "LanguageIsoCode",
+        "FirstName",
+        "ClientId",
+        "Contact"
+      ]
+    },
+    "ContactType": {
+      "title": "ContactType",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "AddressLine5": {
+          "description": "5th address line",
+          "type": "string"
+        },
+        "AddressLine4": {
+          "description": "4th address line: street",
+          "type": "string"
+        },
+        "Locality": {
+          "description": "Town (cardholder's address)",
+          "type": "string"
+        },
+        "PostalCode": {
+          "description": "Postal code (cardholder's address)",
+          "type": "string"
+        },
+        "CountryPostalCode": {
+          "description": "Postal code of the country (for instance F for France)",
+          "type": "string"
+        },
+        "PhoneNumber": {
+          "description": "Phone number of the cardholder",
+          "type": "string"
+        },
+        "FaxNumber": {
+          "description": "Fax number of the cardholder",
+          "type": "string"
+        },
+        "Email": {
+          "description": "Email of the cardholder",
+          "type": "string"
+        },
+        "CountryName": {
+          "description": "Country name (cardholder's address)",
+          "type": "string"
+        },
+        "Country": {
+          "description": "ISO country code of the cardholder",
+          "type": "string"
+        },
+        "AddressLine3": {
+          "description": "3rd address line: complement to the street address (building. Apartment etc.)",
+          "type": "string"
+        },
+        "AddressLine2": {
+          "description": "2nd address line: complement to the cardholder name",
+          "type": "string"
+        }
+      },
+      "required": [
+        "AddressLine4",
+        "Locality",
+        "PostalCode",
+        "CountryName",
+        "Country"
+      ]
+    },
+    "LimitersListType": {
+      "title": "LimitersListType",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "Limiter": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/LimiterType"
+          }
+        }
+      }
+    },
+    "LimiterType": {
+      "title": "LimiterType",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "Level": {
+          "description": "Level in card hierarchy.",
+          "type": "string"
+        },
+        "UsageCode": {
+          "description": "Code of the limiter.",
+          "type": "string"
+        },
+        "Curr": {
+          "description": "ISO code of the Currency of limiter (3 figures)",
+          "type": "string"
+        },
+        "MaxAmount": {
+          "description": "Max amount in the contract currency.",
+          "type": "number",
+          "format": "double"
+        },
+        "CurrentAmount": {
+          "description": "Current amount in the contract currency.",
+          "type": "number",
+          "format": "double"
+        },
+        "OpenAmount": {
+          "description": "Open amount in the contract currency.",
+          "type": "number",
+          "format": "double"
+        },
+        "MaxNumber": {
+          "description": "Max Number",
+          "type": "integer",
+          "format": "int32"
+        },
+        "CurrentNumber": {
+          "description": "Current Number",
+          "type": "integer",
+          "format": "int32"
+        },
+        "OpenNumber": {
+          "description": "Open Number",
+          "type": "integer",
+          "format": "int32"
+        },
+        "SingleAmount": {
+          "description": "Single amount in the contract currency.",
+          "type": "number",
+          "format": "double"
+        },
+        "MaxPercent": {
+          "description": "Max Percent",
+          "type": "number",
+          "format": "double"
+        },
+        "CurrentStatus": {
+          "description": "Current limiter status",
+          "type": "string"
+        },
+        "RenewType": {
+          "description": "Renew Type",
+          "type": "string"
+        },
+        "Period": {
+          "description": "Limit Period",
+          "type": "integer",
+          "format": "int32"
+        },
+        "LastRecordDate": {
+          "description": "Last Record Date",
+          "type": "string",
+          "format": "date"
+        },
+        "SwitchDateFrom": {
+          "description": "Switch Date From",
+          "type": "string",
+          "format": "date"
+        },
+        "SwitchDateTo": {
+          "description": "Switch Date To",
+          "type": "string",
+          "format": "date"
+        },
+        "SwitchStatus": {
+          "description": "Switch Status",
+          "type": "string"
+        },
+        "TariffName": {
+          "description": "Tariff Name",
+          "type": "string"
+        },
+        "StartDate": {
+          "description": "Start Date",
+          "type": "string",
+          "format": "date"
+        },
+        "EndDate": {
+          "description": "End Date",
+          "type": "string",
+          "format": "date"
+        },
+        "CurrencyExponent": {
+          "description": "Cardholder Currency Exponent",
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "Level",
+        "UsageCode",
+        "Curr",
+        "CurrencyExponent"
+      ]
+    },
+    "AuthorizationsListType": {
+      "title": "AuthorizationsListType",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "Authorization": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AuthorizationType"
+          }
+        }
+      }
+    },
+    "AuthorizationType": {
+      "title": "AuthorizationType",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "CardAccountId": {
+          "description": "Internal unique card account identifier (Card level)",
+          "type": "string"
+        },
+        "CardNumber": {
+          "description": "Card number (PAN).  Masked when RequestedDataType.pcidss = true",
+          "type": "string"
+        },
+        "CardExpiryDate": {
+          "description": "Card expiry date",
+          "type": "string",
+          "format": "date"
+        },
+        "CardSeqNumber": {
+          "description": "Card Sequence number",
+          "type": "string"
+        },
+        "TrnDateAndTime": {
+          "description": "Date and time of the transaction.  The time zone of this timestamp corresponds to the local date/hour (terminal) of the transaction.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "TrxDateAndTime": {
+          "description": "Date and time when the authorization has been received by the authorization server. It indicates the moment when the authorization has been acquired by the authorization server. The date and time is provided in GMT.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "MessageType": {
+          "description": "Type of message. The following values can be returned:",
+          "type": "string"
+        },
+        "TransactionType": {
+          "description": "Type of transaction The following values can be returned:",
+          "type": "string"
+        },
+        "AutAmount": {
+          "description": "Authorization amount in the contract currency (including commission). (E.g. : 123.45)",
+          "type": "number",
+          "format": "double"
+        },
+        "ComAmount": {
+          "description": "Commission amount in the contract currency.",
+          "type": "number",
+          "format": "double"
+        },
+        "GrossAmount": {
+          "description": "Gross authorization amount in the contract currency (amount without commission)",
+          "type": "number",
+          "format": "double"
+        },
+        "AmountSign": {
+          "description": "Sign for the amount. The following values can be returned:",
+          "type": "string"
+        },
+        "Currency": {
+          "description": "ISO code of the card holder billing currency. (3 figures)",
+          "type": "string"
+        },
+        "TrnAmount": {
+          "description": "Authorization amount in the transaction currency.",
+          "type": "number",
+          "format": "double"
+        },
+        "TrnCurrency": {
+          "description": "ISO code for the transaction currency.",
+          "type": "integer",
+          "format": "int32"
+        },
+        "ResponseCode": {
+          "description": "Online response code.",
+          "type": "string"
+        },
+        "AuthorizationId": {
+          "description": "Identifier of the authorization. The authorization identifier allows reconciliation with the transaction.",
+          "type": "string"
+        },
+        "TraceNumber": {
+          "description": "Trace number provided by the host.",
+          "type": "string"
+        },
+        "Status": {
+          "description": "Status of the authorization. The following values can be returned:",
+          "type": "string"
+        },
+        "CvxCheckFlag": {
+          "description": "Flag indicating if the CVx or CVx2 has been checked for this authorization. The CVC/CVV value is included in the magnetic track 2 of a card. It is checked for POS or ATM authorization. The CVC/CVV2 value is used for non face to face transaction, like eCommerce. It is usually written on the back of a physical card. The POS entry mode value indicates the type of transaction and therefore if either the CVC/CVV or the CVC/CVV2 value need to be checked.\nThe following values can be returned:",
+          "type": "string"
+        },
+        "EntryMode": {
+          "description": "POS Entry mode. The POS entry mode is a 3 digits code that identify the actual method used to capture the account number and expiration date And the PIN entry capability.",
+          "type": "string"
+        },
+        "AcquirerCountry": {
+          "description": "Acquirer Country code.",
+          "type": "integer",
+          "format": "int32"
+        },
+        "MerchantName": {
+          "description": "Merchant's name.",
+          "type": "string"
+        },
+        "MerchantLocality": {
+          "description": "Merchant's city",
+          "type": "string"
+        },
+        "MerchantCountry": {
+          "description": "Merchant's Country (ISO 3166-1 alpha-3)",
+          "type": "string"
+        },
+        "MerchantId": {
+          "description": "Merchant's identifier",
+          "type": "string"
+        },
+        "TerminalId": {
+          "description": "Terminal's identifier",
+          "type": "string"
+        },
+        "MCC": {
+          "description": "Merchant Category Code. A list of the codes is available at",
+          "type": "integer",
+          "format": "int32"
+        },
+        "PreAuthorized": {
+          "description": "This field allows to make the difference between standard authorizations (N) and pre-authorizations (Y).",
+          "type": "string"
+        },
+        "TransactionConditions": {
+          "description": "Transaction Conditions.",
+          "type": "string"
+        },
+        "InternalId": {
+          "description": "Internal unique identifier of transaction. doc.id",
+          "type": "string"
+        },
+        "TokenInformation": {
+          "$ref": "#/definitions/TokenInformationType"
+        }
+      },
+      "required": [
+        "CardAccountId",
+        "CardNumber",
+        "CardExpiryDate",
+        "CardSeqNumber",
+        "TrnDateAndTime",
+        "TrxDateAndTime",
+        "MessageType",
+        "TransactionType",
+        "AutAmount",
+        "ComAmount",
+        "GrossAmount",
+        "AmountSign",
+        "Currency",
+        "TrnAmount",
+        "TrnCurrency",
+        "ResponseCode",
+        "TraceNumber",
+        "Status",
+        "CvxCheckFlag",
+        "EntryMode",
+        "PreAuthorized",
+        "InternalId"
+      ]
+    },
+    "TokenInformationType": {
+      "title": "TokenInformationType",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "DeviceName": {
+          "description": "Name of the mobile device provided during token enrollment.",
+          "type": "string"
+        },
+        "WalletCode": {
+          "description": "Identification of the token requestor as defined per EMVCO. This identifier is allocated per netwtork scheme. e.g. :",
+          "type": "string"
+        },
+        "WalletName": {
+          "description": "Business name of the wallet, e.g. FitPay, Fitbit, ApplePay, GooglePay, Netflix, …",
+          "type": "string"
+        },
+        "DeviceId": {
+          "description": "Device Identifier provided during token enrollment (SEID for apple devices).",
+          "type": "string"
+        },
+        "MobileLast4Digits": {
+          "description": "Last 4 digits of mobile number hosting the token, provided during the enrolment.",
+          "type": "string"
+        },
+        "TokenId": {
+          "description": "TDigital Primary Account Number (DPAN of the token).",
+          "type": "string"
+        }
+      }
+    },
+    "TokenDetailsListType": {
+      "title": "TokenDetailsListType",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "Token": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TokenDetailsType"
+          }
+        }
+      }
+    },
+    "TokenDetailsType": {
+      "title": "TokenDetailsType",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "TokenId": {
+          "description": "TDigital Primary Account Number (DPAN of the token)",
+          "type": "string"
+        },
+        "Status": {
+          "description": "Status of the token. Possible values :",
+          "type": "string"
+        },
+        "LastStatusChange": {
+          "description": "Date and time of the last status transition.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "WalletCode": {
+          "description": "Identification of the token requestor as defined per EMVCO. This identifier is allocated per netwtork scheme. e.g. :",
+          "type": "string"
+        },
+        "WalletName": {
+          "description": "Business name of the wallet, e.g. FitPay, Fitbit, ApplePay, GooglePay, Netflix, …",
+          "type": "string"
+        },
+        "DeviceName": {
+          "description": "Name of the mobile device provided during token enrollment.",
+          "type": "string"
+        },
+        "DeviceId": {
+          "description": "Device Identifier provided during token enrollment (SEID for apple devices)",
+          "type": "string"
+        },
+        "MobileLast4Digits": {
+          "description": "Last 4 digits of mobile number hosting the token, provided during the enrolment.",
+          "type": "string"
+        }
+      }
+    },
+    "TransactionsListType": {
+      "title": "TransactionsListType",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "Transaction": {
+          "description": "An element containing all the information related to a single operation.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TransactionType"
+          }
+        }
+      }
+    },
+    "TransactionType": {
+      "title": "TransactionType",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "CardAccountId": {
+          "description": "Internal unique card account identifier (Card level)",
+          "type": "string"
+        },
+        "CardNumber": {
+          "description": "Card number (PAN).  Masked when RequestedDataType.pcidss = true",
+          "type": "string"
+        },
+        "CardExpiryDate": {
+          "description": "Card expiry date",
+          "type": "string",
+          "format": "date"
+        },
+        "CardSeqNumber": {
+          "description": "Card Sequence number",
+          "type": "string"
+        },
+        "OperationType": {
+          "description": "Operation type. The following values can be returned:",
+          "type": "string"
+        },
+        "TransactionType": {
+          "description": "Type of transaction The following values can be returned:",
+          "type": "string"
+        },
+        "OperationId": {
+          "description": "Internal unique operation identifier. m_trans.id // EBK",
+          "type": "string"
+        },
+        "OprDateAndTime": {
+          "description": "Date and time of the operation processing. The time zone of this timestamp corresponds to the GMT date/hour.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "OperationLabel": {
+          "description": "Description of the operation:",
+          "type": "string"
+        },
+        "GrossAmount": {
+          "description": "Gross amount in cardholder currency. (E.g. : 123.45)",
+          "type": "number",
+          "format": "double"
+        },
+        "MarkUpAmount": {
+          "description": "Mark up amount.",
+          "type": "number",
+          "format": "double"
+        },
+        "ProcFeeAmount": {
+          "description": "Processing fee amount.",
+          "type": "number",
+          "format": "double"
+        },
+        "ComAmount": {
+          "description": "Commission amount (usually on cash advance).",
+          "type": "number",
+          "format": "double"
+        },
+        "Currency": {
+          "description": "ISO code of the cardholder billing currency. (3 figures)",
+          "type": "string"
+        },
+        "TrnDateAndTime": {
+          "description": "Transaction date and time. The time zone of this timestamp corresponds to the local date/hour (terminal) of the transaction.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "TrnAmount": {
+          "description": "Transaction amount.",
+          "type": "number",
+          "format": "double"
+        },
+        "TrnComAmount": {
+          "description": "Commission amount (usually on cash advance) in transaction currency.\nThis amount is optional and is only provided in case the commission amount was computed in the transaction currency (instead of the cardholder currency).\nThe amount is signed.",
+          "type": "number",
+          "format": "double"
+        },
+        "TrnCurrency": {
+          "description": "Transaction currency.",
+          "type": "integer",
+          "format": "int32"
+        },
+        "TrnMode": {
+          "description": "Transaction mode. The following values can be returned:",
+          "type": "string"
+        },
+        "EntryMode": {
+          "description": "POS Entry mode. The POS entry mode is a 3 digits code that identify the actual method used to capture the account number and expiration date And the PIN entry capability. \nPositions 1 and 2: PAN and date entry mode:",
+          "type": "string"
+        },
+        "TrnArn": {
+          "description": "Transaction Acquirer Reference Number. This field is a number generated by the acquirer of the transaction that allows a unique identification of the transaction.",
+          "type": "string"
+        },
+        "ResponseCode": {
+          "description": "Online response code (de39).",
+          "type": "integer",
+          "format": "int32"
+        },
+        "AuthorizationCode": {
+          "description": "Identifier of the related authorization. The authorization identifier allows reconciliation with the transaction.",
+          "type": "string"
+        },
+        "AcquirerCountry": {
+          "description": "Acquirer Country code.",
+          "type": "integer",
+          "format": "int32"
+        },
+        "MerchantName": {
+          "description": "Merchant name.",
+          "type": "string"
+        },
+        "MerchantLocality": {
+          "description": "Merchant city.",
+          "type": "string"
+        },
+        "MerchantCountry": {
+          "description": "Merchant's Country (ISO 3166-1 alpha-3)",
+          "type": "string"
+        },
+        "MerchantId": {
+          "description": "Merchant Identifier.",
+          "type": "string"
+        },
+        "TerminalId": {
+          "description": "Terminal Identifier",
+          "type": "string"
+        },
+        "MCC": {
+          "description": "Merchant Category Code. A list of the codes is available at",
+          "type": "integer",
+          "format": "int32"
+        },
+        "TransactionConditions": {
+          "description": "Transaction Conditions.",
+          "type": "string"
+        },
+        "InternalId": {
+          "description": "Internal unique identifier of transaction. doc.id",
+          "type": "string"
+        },
+        "TokenInformation": {
+          "$ref": "#/definitions/TokenInformationType"
+        }
+      },
+      "required": [
+        "CardAccountId",
+        "CardNumber",
+        "CardExpiryDate",
+        "CardSeqNumber",
+        "OperationType",
+        "TransactionType",
+        "OperationId",
+        "OprDateAndTime",
+        "GrossAmount",
+        "MarkUpAmount",
+        "ProcFeeAmount",
+        "ComAmount",
+        "Currency",
+        "TrnDateAndTime",
+        "TrnAmount",
+        "TrnComAmount",
+        "TrnCurrency",
+        "TrnMode",
+        "ResponseCode",
+        "InternalId"
+      ]
+    },
+    "Authorizations": {
+      "title": "Authorizations",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "description": "true/false",
+          "type": "boolean"
+        },
+        "multiCards": {
+          "description": "true/false.  Default value: false.",
+          "type": "boolean"
+        },
+        "pageSize": {
+          "description": "Number of Authorizations per page.",
+          "type": "string"
+        },
+        "pageNumber": {
+          "description": "The index of the requested page. A page contains a maximum of #pageSize Authorizations.",
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "enabled"
+      ]
+    },
+    "AuthorizationsList": {
+      "title": "AuthorizationsList",
+      "description": "",
+      "allOf": [
+        {
+          "$ref": "#/definitions/AuthorizationsListType"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "nbResults": {
+              "description": "The total number of Authorizations corresponding to the search criteria at the request time, whatever the requested page size",
+              "type": "integer",
+              "format": "int32"
+            },
+            "nbPages": {
+              "description": "The total number of pages corresponding to the search criteria at the request time.  (nbPages = [(nbResults + pageSize - 1) div pageSize]",
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          "required": [
+            "nbResults",
+            "nbPages"
+          ]
+        }
+      ]
+    },
+    "Card": {
+      "title": "Card",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "description": "true/false",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "enabled"
+      ]
+    },
+    "Client": {
+      "title": "Client",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "description": "true/false",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "enabled"
+      ]
+    },
+    "Limiters": {
+      "title": "Limiters",
+      "description": "",
+      "allOf": [
+        {
+          "$ref": "#/definitions/LimitersOutputType"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "description": "true/false",
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "enabled"
+          ]
+        }
+      ]
+    },
+    "RequestedData": {
+      "title": "RequestedData",
+      "description": "",
+      "allOf": [
+        {
+          "$ref": "#/definitions/RequestedDataType"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "pcidss": {
+              "description": "true/false (default).  When set to true, the CardNumbers present in the response are masked.",
+              "type": "boolean"
+            }
+          }
+        }
+      ]
+    },
+    "Transactions": {
+      "title": "Transactions",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "description": "true/false",
+          "type": "boolean"
+        },
+        "multiCards": {
+          "description": "true/false.  Default value: false.",
+          "type": "boolean"
+        },
+        "fromDate": {
+          "description": "Start date of period.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "toDate": {
+          "description": "End date of period.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "pageSize": {
+          "description": "Number of Transactions per page.",
+          "type": "string"
+        },
+        "pageNumber": {
+          "description": "The index of the requested page. A page contains a maximum of #pageSize Transactions.",
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "enabled"
+      ]
+    },
+    "TransactionsList": {
+      "title": "TransactionsList",
+      "description": "",
+      "allOf": [
+        {
+          "$ref": "#/definitions/TransactionsListType"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "nbResults": {
+              "description": "The total number of Transactions corresponding to the search criteria at the request time, whatever the requested page size",
+              "type": "integer",
+              "format": "int32"
+            },
+            "nbPages": {
+              "description": "The total number of pages corresponding to the search criteria at the request time.  (nbPages = [(nbResults + pageSize - 1) div pageSize]",
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          "required": [
+            "nbResults",
+            "nbPages"
+          ]
+        }
+      ]
+    },
+    "ModificationSignaletiqueInput": {
+      "title": "ModificationSignaletiqueInput",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string"
+        },
+        "data": {
+          "properties": {
+            "UserName": {
+              "description": "ID of the user sending the request",
+              "type": "string"
+            },
+            "IssuerBankCode": {
+              "description": "ABBL code of the issuer bank",
+              "type": "string"
+            },
+            "RequestId": {
+              "description": "Id of the request. It must be unique for the bank.",
+              "type": "string"
+            },
+            "CardNumber": {
+              "description": "number (PAN) of the card",
+              "type": "string"
+            },
+            "CardExpiryDate": {
+              "description": "expiry date of the card",
+              "type": "string",
+              "format": "date-time"
+            },
+            "CardSeqNumber": {
+              "description": "sequence number of the card",
+              "type": "string"
+            },
+            "ActionTP": {
+              "description": "Type of update. This information allows to specify to which type of \ncontract the modifications of the master data apply:",
+              "type": "string"
+            },
+            "Quality": {
+              "description": "Status. The Quality is a mandatory free text attribute and may have any \nvalue other than SPACES The attribute is used to derive the cardholder’s sex as follows :",
+              "type": "string"
+            },
+            "LastName": {
+              "description": "Name. This information is used for engraving the card.",
+              "type": "string"
+            },
+            "FirstName": {
+              "description": "First name. This information is used for engraving the card.",
+              "type": "string"
+            },
+            "BirthDate": {
+              "description": "Birth date.",
+              "type": "string",
+              "format": "date-time"
+            },
+            "AddressLine4": {
+              "description": "4th address line: street.",
+              "type": "string"
+            },
+            "PostalCode": {
+              "description": "Postal code.",
+              "type": "string"
+            },
+            "Locality": {
+              "description": "Town.",
+              "type": "string"
+            },
+            "Country": {
+              "description": "ISO 3166-1 numeric (or numeric-3) Country Code. (e.g 442, standing for Luxembourg)",
+              "type": "string"
+            },
+            "LanguageCode": {
+              "description": "Language code. The cardholder language can have the following values:",
+              "type": "string"
+            },
+            "Passeport": {
+              "description": "Passport number.",
+              "type": "string"
+            },
+            "Title": {
+              "description": "Title. This information is used for engraving the card.",
+              "type": "string"
+            },
+            "MaidenName": {
+              "description": "Maiden name. This information is used for engraving the card.",
+              "type": "string"
+            },
+            "PhoneNumber": {
+              "description": "Phone number.",
+              "type": "string"
+            },
+            "FaxNumber": {
+              "description": "Fax number.",
+              "type": "string"
+            },
+            "AddressLine2": {
+              "description": "2nd address line: Complement to the C/H name.",
+              "type": "string"
+            },
+            "AddressLine3": {
+              "description": "3rd address line: complement to the address (e.g. building, apartment, etc.)",
+              "type": "string"
+            },
+            "AddressLine5": {
+              "description": "5th address line",
+              "type": "string"
+            },
+            "Nationality": {
+              "description": "Cardholder's nationality (ISO 3166-1 Numeric code, e.g 442 for Luxembourg nationality). The cardholder’s nationality is optional. If this \nfield is not completed, the default value assigned is Luxembourg nationality.",
+              "type": "string"
+            },
+            "ClientClass": {
+              "description": "Client's class code",
+              "type": "string"
+            },
+            "Email": {
+              "description": "E-mail address.",
+              "type": "string"
+            },
+            "SocialNumber": {
+              "description": "Social security number.",
+              "type": "string"
+            },
+            "MotherName": {
+              "description": "Mother’s maiden name.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "UserName",
+            "IssuerBankCode",
+            "RequestId",
+            "CardNumber",
+            "CardExpiryDate",
+            "CardSeqNumber",
+            "ActionTP"
+          ]
+        }
+      }
+    },
+    "ModificationSignaletiqueOutput": {
+      "title": "ModificationSignaletiqueOutput",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "ResultCode": {
+          "description": "Processing result:",
+          "type": "integer",
+          "format": "int32"
+        },
+        "ErrorCode": {
+          "description": "Error code in case of error or warning",
+          "type": "string"
+        },
+        "ErrorMessage": {
+          "description": "Error message description",
+          "type": "string"
+        },
+        "ErrorContext": {
+          "description": "Specific error message giving the context",
+          "type": "string"
+        },
+        "FunctionName": {
+          "description": "Name of the function having generated the error",
+          "type": "string"
+        }
+      }
+    }
+  }
+}
