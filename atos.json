@@ -1,0 +1,709 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.1",
+    "title": "acsWsClientService"
+  },
+  "host": "tests-lux-ws.aw.atos.net",
+  "basePath": "/ws/enrolment",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/enrolCardholder": {
+      "post": {
+        "summary": "enrolCardholder",
+        "tags": [
+          "acsClientWebServiceSoapBinding"
+        ],
+        "operationId": "EnrolCardholder",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/SEC_TOKEN"
+          },
+          {
+            "$ref": "#/parameters/X-Bgl-Monitoring-PropagationId"
+          },
+          {
+            "$ref": "#/parameters/X-Bgl-Monitoring-Path"
+          },
+          {
+            "$ref": "#/parameters/X-Bgl-Monitoring-To"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/EnrolCardholderRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/EnrolCardholderResponse"
+            },
+            "examples": {}
+          }
+        },
+        "security": [],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    },
+    "/renewCards": {
+      "post": {
+        "summary": "renewCards",
+        "tags": [
+          "acsClientWebServiceSoapBinding"
+        ],
+        "operationId": "RenewCardsPost",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/SEC_TOKEN"
+          },
+          {
+            "$ref": "#/parameters/X-Bgl-Monitoring-PropagationId"
+          },
+          {
+            "$ref": "#/parameters/X-Bgl-Monitoring-Path"
+          },
+          {
+            "$ref": "#/parameters/X-Bgl-Monitoring-To"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/RenewCardsRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/RenewCardsResponse"
+            },
+            "examples": {}
+          }
+        },
+        "security": [],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    },
+    "/askOTRC": {
+      "post": {
+        "summary": "askOTRC",
+        "tags": [
+          "acsClientWebServiceSoapBinding"
+        ],
+        "operationId": "AskOTRCPost",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/SEC_TOKEN"
+          },
+          {
+            "$ref": "#/parameters/X-Bgl-Monitoring-PropagationId"
+          },
+          {
+            "$ref": "#/parameters/X-Bgl-Monitoring-Path"
+          },
+          {
+            "$ref": "#/parameters/X-Bgl-Monitoring-To"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/AskOTRCRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/AskOTRCResponse"
+            },
+            "examples": {}
+          }
+        },
+        "security": [],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    },
+    "/echo": {
+      "post": {
+        "summary": "echo",
+        "tags": [
+          "acsClientWebServiceSoapBinding"
+        ],
+        "operationId": "EchoPost",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/SEC_TOKEN"
+          },
+          {
+            "$ref": "#/parameters/X-Bgl-Monitoring-PropagationId"
+          },
+          {
+            "$ref": "#/parameters/X-Bgl-Monitoring-Path"
+          },
+          {
+            "$ref": "#/parameters/X-Bgl-Monitoring-To"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/EchoRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/EchoResponse"
+            },
+            "examples": {}
+          }
+        },
+        "security": [],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    },
+    "/getEnrolmentData": {
+      "post": {
+        "summary": "getEnrolmentData",
+        "tags": [
+          "acsClientWebServiceSoapBinding"
+        ],
+        "operationId": "GetEnrolmentDataPost",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/SEC_TOKEN"
+          },
+          {
+            "$ref": "#/parameters/X-Bgl-Monitoring-PropagationId"
+          },
+          {
+            "$ref": "#/parameters/X-Bgl-Monitoring-Path"
+          },
+          {
+            "$ref": "#/parameters/X-Bgl-Monitoring-To"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/EnrolmentDataRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/EnrolmentDataResponse"
+            },
+            "examples": {}
+          }
+        },
+        "security": [],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    }
+  },
+  "definitions": {
+    "AskOTRCResponse": {
+      "title": "askOTRCResponse",
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "header": {
+              "$ref": "#/definitions/Header"
+            },
+            "returnData": {
+              "$ref": "#/definitions/ReturnData"
+            },
+            "encryptedData": {
+              "$ref": "#/definitions/EncryptedDataResponse"
+            }
+          }
+        }
+      }
+    },
+    "AskOTRCRequest": {
+      "title": "askOTRCRequest",
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "header": {
+              "$ref": "#/definitions/Header"
+            },
+            "encryptedData": {
+              "$ref": "#/definitions/EncryptedData"
+            }
+          }
+        }
+      }
+    },
+    "EchoRequest": {
+      "title": "echoRequest",
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "senderTime": {
+              "description": "",
+              "type": "string"
+            },
+            "echoText": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "EchoResponse": {
+      "title": "echoResponse",
+      "type": "object",
+      "properties": {
+        "body": {
+          "type": "object",
+          "properties": {
+            "echoResponse": {
+              "type": "object",
+              "properties": {
+                "senderTime": {
+                  "description": "",
+                  "type": "string"
+                },
+                "echoText": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "EnrolCardholderRequest": {
+      "title": "enrolCardholderRequest",
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "header": {
+              "$ref": "#/definitions/Header"
+            },
+            "encryptedData": {
+              "$ref": "#/definitions/EncryptedData"
+            },
+            "cardData": {
+              "$ref": "#/definitions/CardData"
+            }
+          }
+        }
+      }
+    },
+    "EnrolCardholderResponse": {
+      "title": "enrolCardholderRequest",
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "header": {
+              "$ref": "#/definitions/Header"
+            },
+            "returnData": {
+              "$ref": "#/definitions/ReturnData"
+            }
+          }
+        }
+      }
+    },
+    "EnrolmentDataRequest": {
+      "title": "enrolmentDataRequest",
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "header": {
+              "$ref": "#/definitions/Header"
+            },
+            "encryption": {
+              "$ref": "#/definitions/Encryption"
+            },
+            "card": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CardEnrolmentData"
+              }
+            }
+          }
+        }
+      }
+    },
+    "EnrolmentDataResponse": {
+      "title": "enrolmentDataResponse",
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "header": {
+              "$ref": "#/definitions/Header"
+            },
+            "result": {
+              "$ref": "#/definitions/Result"
+            }
+          }
+        }
+      }
+    },
+    "RenewCardsRequest": {
+      "title": "renewCardsRequest",
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "header": {
+              "$ref": "#/definitions/Header"
+            },
+            "encryption": {
+              "$ref": "#/definitions/Encryption"
+            },
+            "card": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CardType"
+              }
+            }
+          }
+        }
+      }
+    },
+    "RenewCardsResponse": {
+      "title": "renewCardsResponse",
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "properties": {
+            "header": {
+              "$ref": "#/definitions/Header"
+            },
+            "encryption": {
+              "$ref": "#/definitions/Result"
+            }
+          }
+        }
+      }
+    },
+    "Header": {
+      "title": "Header",
+      "type": "object",
+      "properties": {
+        "senderTime": {
+          "description": "",
+          "type": "string"
+        },
+        "issuerId": {
+          "type": "string",
+          "description": ""
+        },
+        "subIssuerId": {
+          "type": "string",
+          "description": ""
+        },
+        "enrolmentId": {
+          "description": "",
+          "type": "string"
+        }
+      }
+    },
+    "Encryption": {
+      "title": "encryptionData",
+      "type": "object",
+      "properties": {
+        "keyId": {
+          "description": "",
+          "type": "string"
+        },
+        "algoId": {
+          "type": "string",
+          "description": ""
+        }
+      }
+    },
+    "CardEnrolmentData": {
+      "title": "cardEnrolmentData",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "",
+          "type": "string"
+        },
+        "encryptedPan": {
+          "type": "string",
+          "description": ""
+        },
+        "encryptedExpiry": {
+          "description": "",
+          "type": "string"
+        }
+      }
+    },
+    "CardData": {
+      "title": "cardData",
+      "type": "object",
+      "properties": {
+        "tokenId": {
+          "description": "",
+          "type": "string"
+        },
+        "phoneNumber": {
+          "type": "string",
+          "description": ""
+        },
+        "pam": {
+          "description": "",
+          "type": "string"
+        },
+        "language": {
+          "description": "",
+          "type": "string"
+        }
+      }
+    },
+    "Result": {
+      "title": "Result",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "",
+          "type": "string"
+        },
+        "returnCode": {
+          "type": "string",
+          "description": ""
+        },
+        "returnLabel": {
+          "description": "",
+          "type": "string"
+        },
+        "tokenId": {
+          "description": "",
+          "type": "string"
+        },
+        "phoneNumber": {
+          "type": "string",
+          "description": ""
+        },
+        "pam": {
+          "description": "",
+          "type": "string"
+        },
+        "language": {
+          "description": "",
+          "type": "string"
+        },
+        "countryCode": {
+          "description": "",
+          "type": "string"
+        }
+      }
+    },
+    "EncryptedData": {
+      "title": "encryptedData",
+      "type": "object",
+      "properties": {
+        "keyId": {
+          "type": "string",
+          "description": ""
+        },
+        "algoId": {
+          "type": "string",
+          "description": ""
+        },
+        "encryptedPan": {
+          "type": "string",
+          "description": ""
+        },
+        "encryptedExpiry": {
+          "type": "string",
+          "description": ""
+        }
+      }
+    },
+    "EncryptedDataResponse": {
+      "title": "encryptedData",
+      "type": "object",
+      "properties": {
+        "keyId": {
+          "type": "string",
+          "description": ""
+        },
+        "algoId": {
+          "type": "string",
+          "description": ""
+        },
+        "encryptedOTRC": {
+          "type": "string",
+          "description": ""
+        },
+        "expiryOTRC": {
+          "type": "string",
+          "description": ""
+        },
+        "sourceOTRC": {
+          "type": "string",
+          "description": ""
+        }
+      }
+    },
+    "ReturnData": {
+      "title": "returnData",
+      "type": "object",
+      "properties": {
+        "returnCode": {
+          "type": "string",
+          "description": ""
+        },
+        "returnLabel": {
+          "type": "string",
+          "description": ""
+        },
+        "returnDetails": {
+          "type": "string",
+          "description": ""
+        }
+      }
+    },
+    "CardType": {
+      "title": "CardType",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "",
+          "type": "string"
+        },
+        "encrypteOlddPan": {
+          "type": "string",
+          "description": ""
+        },
+        "encryptedPan": {
+          "type": "string",
+          "description": ""
+        },
+        "encryptedExpiry": {
+          "description": "",
+          "type": "string"
+        }
+      }
+    }
+  },
+  "parameters": {
+    "SEC_TOKEN": {
+      "name": "SEC_TOKEN",
+      "type": "string",
+      "description": "Security Token",
+      "in": "header",
+      "required": false
+    },
+    "X-Bgl-Monitoring-PropagationId": {
+      "name": "X-Bgl-Monitoring-PropagationId",
+      "type": "string",
+      "description": "Propagation Id",
+      "in": "header",
+      "required": true
+    },
+    "X-Bgl-Monitoring-Path": {
+      "name": "X-Bgl-Monitoring-Path",
+      "type": "string",
+      "description": "Current monitoring Path",
+      "in": "header",
+      "required": true
+    },
+    "X-Bgl-Monitoring-To": {
+      "name": "X-Bgl-Monitoring-To",
+      "type": "string",
+      "description": "Monitoring \"To application\"",
+      "in": "header",
+      "required": true
+    }
+  }
+}
