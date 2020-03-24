@@ -1,0 +1,530 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "Sms",
+    "contact": {}
+  },
+  "host": "sms4a.retarus.com",
+  "basePath": "/rest/v1",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/jobs": {
+      "get": {
+        "summary": "This resource delivers a list of Job IDs from a specific time period.",
+        "tags": [
+          "Sms"
+        ],
+        "operationId": "getAvailableJobReports",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/SEC_TOKEN"
+          },
+          {
+            "$ref": "#/parameters/X-Bgl-Monitoring-PropagationId"
+          },
+          {
+            "$ref": "#/parameters/X-Bgl-Monitoring-Path"
+          },
+          {
+            "$ref": "#/parameters/X-Bgl-Monitoring-To"
+          },
+          {
+            "name": "jobIdsOnly",
+            "in": "query",
+            "required": true,
+            "description": "Returns only jobIds (must currently always be set to true)",
+            "type": "boolean",
+            "default": true
+          },
+          {
+            "name": "fromTs",
+            "in": "query",
+            "required": false,
+            "description": "From timestamp in ISO-8601 format (maximum 30 days before toTs).",
+            "type": "string"
+          },
+          {
+            "name": "toTs",
+            "in": "query",
+            "required": false,
+            "description": "To timestamp in ISO-8601 format (maximum 30 days before toTs).",
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "Limits the results list to a specific number of Job IDs (0 < limit <=1000).",
+            "type": "integer",
+            "default": 100
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "description": "Limits the results list to a specific number of Job IDs (0 < limit <=1000).",
+            "type": "integer",
+            "default": 0
+          },
+          {
+            "name": "open",
+            "in": "query",
+            "required": false,
+            "description": "Restricts the results list to Job IDs that are either still open or have already been completed",
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/jobResponse"
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid request-parameter"
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "500": {
+            "description": "Can’t list jobs"
+          }
+        }
+      },
+      "post": {
+        "summary": "This method is used to create and prepare SMS jobs to be transferred for processing. \n",
+        "tags": [
+          "Sms"
+        ],
+        "operationId": "sendJobPost",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/SEC_TOKEN"
+          },
+          {
+            "$ref": "#/parameters/X-Bgl-Monitoring-PropagationId"
+          },
+          {
+            "$ref": "#/parameters/X-Bgl-Monitoring-Path"
+          },
+          {
+            "$ref": "#/parameters/X-Bgl-Monitoring-To"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/jobRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/jobResponse"
+            },
+            "headers": {}
+          },
+          "201": {
+            "description": "Job successfully created",
+            "schema": {
+              "$ref": "#/definitions/jobResponse"
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid JobRequest-data (qos, encoding, ..)"
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "409": {
+            "description": "Duplicate job (detected by enabled duplicate-detection)"
+          },
+          "422": {
+            "description": "Invalid JobRequest-data (invalid chars, no messages, ..)"
+          },
+          "500": {
+            "description": "Can’t accept job or unable to transliterate sms-text"
+          }
+        }
+      }
+    },
+    "/jobs/{jobId}": {
+      "get": {
+        "summary": "With the assistance of this URL resource, a status report for an SMS job can be requested by Job I.",
+        "tags": [
+          "Sms"
+        ],
+        "operationId": "getJobReport",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/SEC_TOKEN"
+          },
+          {
+            "$ref": "#/parameters/X-Bgl-Monitoring-PropagationId"
+          },
+          {
+            "$ref": "#/parameters/X-Bgl-Monitoring-Path"
+          },
+          {
+            "$ref": "#/parameters/X-Bgl-Monitoring-To"
+          },
+          {
+            "in": "path",
+            "name": "jobId",
+            "description": "The unique job-id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List jobs successful",
+            "schema": {
+              "$ref": "#/definitions/jobReport"
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid request-parameter"
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "500": {
+            "description": "Can’t list jobs"
+          }
+        }
+      }
+    },
+    "/sms": {
+      "get": {
+        "summary": "a status report for recipients of a job can be requested by Job ID.",
+        "tags": [
+          "Sms"
+        ],
+        "operationId": "getSms",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/SEC_TOKEN"
+          },
+          {
+            "$ref": "#/parameters/X-Bgl-Monitoring-PropagationId"
+          },
+          {
+            "$ref": "#/parameters/X-Bgl-Monitoring-Path"
+          },
+          {
+            "$ref": "#/parameters/X-Bgl-Monitoring-To"
+          },
+          {
+            "name": "jobId",
+            "in": "query",
+            "description": "The unique job-id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List jobs successful",
+            "schema": {
+              "$ref": "#/definitions/recipientReport"
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid request-parameter"
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "500": {
+            "description": "Can’t list jobs"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "jobReport": {
+      "title": "jobReport",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "jobId": {
+          "type": "string"
+        },
+        "src": {
+          "type": "string"
+        },
+        "encoding": {
+          "type": "string"
+        },
+        "billcode": {
+          "type": "string"
+        },
+        "statusRequested": {
+          "type": "boolean"
+        },
+        "flash": {
+          "type": "boolean"
+        },
+        "validityMin": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "customerRef": {
+          "type": "string"
+        },
+        "qos": {
+          "type": "string"
+        },
+        "receiptTs": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "finishedTs": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "recipientIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "jobRequest": {
+      "title": "jobRequest",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "options": {
+          "$ref": "#/definitions/options"
+        },
+        "messages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/message"
+          }
+        }
+      },
+      "required": [
+        "messages"
+      ]
+    },
+    "jobResponse": {
+      "title": "jobResponse",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "jobId": {
+          "type": "string"
+        }
+      }
+    },
+    "recipientReport": {
+      "title": "recipientReport",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "smsId": {
+          "type": "string"
+        },
+        "dst": {
+          "type": "string"
+        },
+        "customerRef": {
+          "type": "string"
+        },
+        "processStatus": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "sentTs": {
+          "type": "string",
+          "format": "date-time",
+          "example": "2018-07-09T11:25:24.683+02:00"
+        },
+        "finishedTs": {
+          "type": "string",
+          "format": "date-time",
+          "example": "2018-07-09T11:25:24.683+02:00"
+        }
+      }
+    },
+    "recipient": {
+      "title": "recipient",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "dst": {
+          "type": "string"
+        },
+        "customerRef": {
+          "type": "string"
+        },
+        "blackoutPeriods": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "dst"
+      ]
+    },
+    "options": {
+      "title": "options",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "src": {
+          "type": "string"
+        },
+        "encoding": {
+          "type": "string"
+        },
+        "billcode": {
+          "type": "string"
+        },
+        "statusRequested": {
+          "type": "boolean"
+        },
+        "flash": {
+          "type": "boolean"
+        },
+        "customerRef": {
+          "type": "string"
+        },
+        "validityMin": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "maxParts": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "qos": {
+          "type": "string",
+          "enum": [
+            "normal",
+            "express"
+          ],
+          "example": "normal / express"
+        },
+        "jobPeriod": {
+          "type": "string",
+          "example": "2018-11-01T13:00:00Z  2018-11-01T13:00:00+02:00"
+        },
+        "duplicateDetection": {
+          "type": "boolean"
+        },
+        "invalidCharacters": {
+          "type": "string"
+        },
+        "blackoutPeriods": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "example": "2018-09-24T12:00:00.000+02:00/2018-09-24T13:00:00.000+02:00"
+        }
+      }
+    },
+    "message": {
+      "title": "message",
+      "description": "",
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string"
+        },
+        "recipients": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/recipient"
+          }
+        }
+      },
+      "required": [
+        "text",
+        "recipients"
+      ]
+    }
+  },
+  "tags": [
+    {
+      "name": "Sms",
+      "description": ""
+    }
+  ],
+  "parameters": {
+    "SEC_TOKEN": {
+      "name": "SEC_TOKEN",
+      "type": "string",
+      "description": "Security Token",
+      "in": "header",
+      "required": true
+    },
+    "X-Bgl-Monitoring-PropagationId": {
+      "name": "X-Bgl-Monitoring-PropagationId",
+      "type": "string",
+      "description": "Propagation Id",
+      "in": "header",
+      "required": false
+    },
+    "X-Bgl-Monitoring-Path": {
+      "name": "X-Bgl-Monitoring-Path",
+      "type": "string",
+      "description": "Current monitoring Path",
+      "in": "header",
+      "required": false
+    },
+    "X-Bgl-Monitoring-To": {
+      "name": "X-Bgl-Monitoring-To",
+      "type": "string",
+      "description": "Monitoring \"To application\"",
+      "in": "header",
+      "required": false
+    }
+  }
+}
