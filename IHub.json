@@ -1,0 +1,239 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.4.0",
+    "title": "iHub subscriptions API",
+    "contact": {
+      "email": "robin.charlier@ext.i-hub.com"
+    }
+  },
+  "tags": [
+    {
+      "name": "iHub Subscriptions API",
+      "description": "API provided by iHub Data to manage subscriptions"
+    }
+  ],
+  "basePath": "/data/bgl",
+  "host": "qa.api.i-hub.com",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/subscriptions": {
+      "post": {
+        "tags": [
+          "iHub Subscriptions API"
+        ],
+        "summary": "Create a subscription to a company and a dataset",
+        "description": "Subscribe to get information about a company with the triplet: company identifier (RCSL number), external ID and dataset.",
+        "operationId": "subscribe",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/SEC_TOKEN"
+          },
+          {
+            "$ref": "#/parameters/X-Bgl-Monitoring-PropagationId"
+          },
+          {
+            "$ref": "#/parameters/X-Bgl-Monitoring-Path"
+          },
+          {
+            "$ref": "#/parameters/X-Bgl-Monitoring-To"
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": false,
+            "type": "string",
+            "description": "Bearer {access_token}"
+          },
+          {
+            "in": "body",
+            "name": "new subscriptions",
+            "schema": {
+              "$ref": "#/definitions/SubscribeRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "subscriptions created",
+            "schema": {
+              "$ref": "#/definitions/Subscription"
+            }
+          },
+          "400": {
+            "description": "invalid request content"
+          },
+          "401": {
+            "description": "auth token missing or expired"
+          },
+          "409": {
+            "description": "another subscription exists for the given data"
+          }
+        }
+      }
+    },
+    "/subscriptions/{subscriptionId}": {
+      "delete": {
+        "tags": [
+          "iHub Subscriptions API"
+        ],
+        "summary": "Remove a subscription for a given subscription ID",
+        "description": "Remove a subscription by its identifier. All updates received by iHub won’t be send to the client anymore.",
+        "operationId": "unsubscribe",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/SEC_TOKEN"
+          },
+          {
+            "$ref": "#/parameters/X-Bgl-Monitoring-PropagationId"
+          },
+          {
+            "$ref": "#/parameters/X-Bgl-Monitoring-Path"
+          },
+          {
+            "$ref": "#/parameters/X-Bgl-Monitoring-To"
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "required": false,
+            "type": "string",
+            "description": "Bearer {access_token}"
+          },
+          {
+            "in": "path",
+            "name": "subscriptionId",
+            "description": "the subscription technical identifier (provided at creation)",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "subscription removed"
+          },
+          "401": {
+            "description": "auth token missing or expired"
+          },
+          "404": {
+            "description": "no existing subscription for that subscriptionId"
+          },
+          "409": {
+            "description": "that subscription is already unsubscribed"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Subscription": {
+      "required": [
+        "rcslNumber",
+        "status",
+        "dataset"
+      ],
+      "properties": {
+        "subscriptionId": {
+          "type": "string"
+        },
+        "rcslNumber": {
+          "type": "string",
+          "example": "B9249349"
+        },
+        "externalId": {
+          "type": "string"
+        },
+        "dataset": {
+          "type": "string",
+          "enum": [
+            "SIGNAGE",
+            "PRODUCT",
+            "CONTACT",
+            "FACILITIES",
+            "FINANCIAL"
+          ],
+          "example": "SIGNAGE"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "WAITING",
+            "AVAILABLE",
+            "ENDED",
+            "BUSINESS_ERROR"
+          ]
+        }
+      }
+    },
+    "SubscribeRequest": {
+      "required": [
+        "rcslNumber",
+        "externalId",
+        "dataset"
+      ],
+      "properties": {
+        "rcslNumber": {
+          "type": "string"
+        },
+        "externalId": {
+          "type": "string"
+        },
+        "dataset": {
+          "type": "string",
+          "enum": [
+            "SIGNAGE",
+            "PRODUCT",
+            "CONTACT",
+            "FACILITIES",
+            "FINANCIAL"
+          ],
+          "example": "SIGNAGE"
+        }
+      }
+    }
+  },
+  "parameters": {
+    "SEC_TOKEN": {
+      "name": "SEC_TOKEN",
+      "type": "string",
+      "description": "Security Token",
+      "in": "header",
+      "required": true
+    },
+    "X-Bgl-Monitoring-PropagationId": {
+      "name": "X-Bgl-Monitoring-PropagationId",
+      "type": "string",
+      "description": "Propagation Id",
+      "in": "header",
+      "required": true
+    },
+    "X-Bgl-Monitoring-Path": {
+      "name": "X-Bgl-Monitoring-Path",
+      "type": "string",
+      "description": "Current monitoring Path",
+      "in": "header",
+      "required": true
+    },
+    "X-Bgl-Monitoring-To": {
+      "name": "X-Bgl-Monitoring-To",
+      "type": "string",
+      "description": "Monitoring \"To application\"",
+      "in": "header",
+      "required": true
+    }
+  }
+}
