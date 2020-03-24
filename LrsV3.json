@@ -1,0 +1,740 @@
+{
+  "swagger" : "2.0",
+  "host" : "sdal030l.bgl.lu:8565",
+  "basePath" : "/luxtrust/lrs/v3",
+  "schemes" : [ "https" ],
+  "consumes" : [ "application/json" ],
+  "produces" : [ "application/json" ],
+  "paths" : {
+    "/getTemplate" : {
+      "post" : {
+        "description" : "",
+        "operationId" : "GetTemplatePost",
+        "summary" : "getTemplate",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "description" : "",
+          "required" : true,
+          "in" : "body",
+          "name" : "Body",
+          "schema" : {
+            "$ref" : "#/definitions/getTemplate"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/getTemplateResponse"
+            }
+          }
+        }
+      }
+    },
+    "/cancel" : {
+      "post" : {
+        "description" : "",
+        "operationId" : "CancelPost",
+        "summary" : "cancel",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "description" : "",
+          "required" : true,
+          "in" : "body",
+          "name" : "Body",
+          "schema" : {
+            "$ref" : "#/definitions/cancel"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/cancelResponse"
+            }
+          }
+        }
+      }
+    },
+    "/getStatus" : {
+      "post" : {
+        "description" : "",
+        "operationId" : "GetStatusPost",
+        "summary" : "getStatus",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "description" : "",
+          "required" : true,
+          "in" : "body",
+          "name" : "Body",
+          "schema" : {
+            "$ref" : "#/definitions/getStatus"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/getStatusResponse"
+            }
+          }
+        }
+      }
+    },
+    "/registerWithRemoteId" : {
+      "post" : {
+        "description" : "",
+        "operationId" : "RegisterWithRemoteIdPost",
+        "summary" : "registerWithRemoteId",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "description" : "",
+          "required" : true,
+          "in" : "body",
+          "name" : "Body",
+          "schema" : {
+            "$ref" : "#/definitions/registerWithRemoteId"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/registerWithRemoteIdResponse"
+            }
+          }
+        }
+      }
+    },
+    "/getIdentificationReport" : {
+      "post" : {
+        "description" : "",
+        "operationId" : "GetIdentificationReportPost",
+        "summary" : "getIdentificationReport",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "description" : "",
+          "required" : true,
+          "in" : "body",
+          "name" : "Body",
+          "schema" : {
+            "$ref" : "#/definitions/getIdentificationReport"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/getIdentificationReportResponse"
+            }
+          }
+        }
+      }
+    },
+    "/getProduct" : {
+      "post" : {
+        "description" : "",
+        "operationId" : "GetProductPost",
+        "summary" : "getProduct",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "description" : "",
+          "required" : true,
+          "in" : "body",
+          "name" : "Body",
+          "schema" : {
+            "$ref" : "#/definitions/getProduct"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/getProductResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "cancel" : {
+      "title" : "cancel",
+      "required" : [ "arg0", "arg1", "arg2" ],
+      "properties" : {
+        "arg0" : {
+          "$ref" : "#/definitions/ns17_RegistrationAuthority"
+        },
+        "arg1" : {
+          "type" : "string"
+        },
+        "arg2" : {
+          "$ref" : "#/definitions/ns17_Signature"
+        }
+      },
+      "type" : "object"
+    },
+    "cancelResponse" : {
+      "title" : "cancelResponse",
+      "required" : [ "response" ],
+      "properties" : {
+        "response" : {
+          "$ref" : "#/definitions/tns_cancelResult"
+        }
+      },
+      "type" : "object"
+    },
+    "getProductResponse" : {
+      "title" : "getProductResponse",
+      "required" : [ "response" ],
+      "properties" : {
+        "response" : {
+          "$ref" : "#/definitions/tns_productResult"
+        }
+      },
+      "type" : "object"
+    },
+    "tns_productResult" : {
+      "title" : "tns_productResult",
+      "description" : "",
+      "properties" : {
+        "Product" : {
+          "$ref" : "#/definitions/ns17_Product"
+        },
+        "ErrorMessage" : {
+          "type" : "string"
+        }
+      },
+      "type" : "object"
+    },
+    "ns17_DeviceType" : {
+      "title" : "ns17_DeviceType",
+      "description" : "",
+      "example" : "DPGO6",
+      "type" : "string"
+    },
+    "getStatus" : {
+      "title" : "getStatus",
+      "required" : [ "arg0", "arg1" ],
+      "properties" : {
+        "arg0" : {
+          "$ref" : "#/definitions/ns17_RegistrationAuthority"
+        },
+        "arg1" : {
+          "type" : "string"
+        }
+      },
+      "type" : "object"
+    },
+    "SignatureTypeEnum" : {
+      "title" : "SignatureTypeEnum",
+      "description" : "",
+      "example" : "REGISTER",
+      "type" : "string"
+    },
+    "ns17_PaymentMode" : {
+      "title" : "ns17_PaymentMode",
+      "description" : "",
+      "example" : "VOUCHER",
+      "type" : "string"
+    },
+    "ns17_Product" : {
+      "title" : "ns17_Product",
+      "description" : "",
+      "required" : [ "Profile", "Publish" ],
+      "properties" : {
+        "Profile" : {
+          "$ref" : "#/definitions/ns17_Profile"
+        },
+        "SubjectSerialNumber" : {
+          "type" : "string"
+        },
+        "InitialOrder" : {
+          "format" : "date-time",
+          "type" : "string"
+        },
+        "LastOrder" : {
+          "format" : "date-time",
+          "type" : "string"
+        },
+        "SigningServer" : {
+          "$ref" : "#/definitions/ns17_SigningServer"
+        },
+        "Certificate" : {
+          "items" : {
+            "$ref" : "#/definitions/ns17_Certificate"
+          },
+          "type" : "array"
+        },
+        "Publish" : {
+          "type" : "boolean"
+        }
+      },
+      "type" : "object"
+    },
+    "ns17_Delivery" : {
+      "title" : "ns17_Delivery",
+      "description" : "",
+      "required" : [ "Email", "Mail" ],
+      "properties" : {
+        "Email" : {
+          "type" : "string"
+        },
+        "Mail" : {
+          "$ref" : "#/definitions/ns17_Address"
+        },
+        "Mobile" : {
+          "type" : "string"
+        },
+        "CellPhone" : {
+          "type" : "string"
+        },
+        "ActivationCode" : {
+          "type" : "string"
+        }
+      },
+      "type" : "object"
+    },
+    "ns17_SigningServer" : {
+      "title" : "ns17_SigningServer",
+      "description" : "",
+      "required" : [ "DeviceType" ],
+      "properties" : {
+        "Subject" : {
+          "$ref" : "#/definitions/ns17_Subject"
+        },
+        "DeviceType" : {
+          "$ref" : "#/definitions/ns17_DeviceType"
+        },
+        "DeviceSerialNumber" : {
+          "type" : "string"
+        }
+      },
+      "type" : "object"
+    },
+    "tns_cancelResult" : {
+      "title" : "tns_cancelResult",
+      "description" : "",
+      "properties" : {
+        "ErrorMessage" : {
+          "type" : "string"
+        },
+        "canceled" : {
+          "type" : "boolean"
+        }
+      },
+      "type" : "object"
+    },
+    "getIdentificationReport" : {
+      "title" : "getIdentificationReport",
+      "required" : [ "arg0", "arg1", "arg2" ],
+      "properties" : {
+        "arg0" : {
+          "$ref" : "#/definitions/ns17_RegistrationAuthority"
+        },
+        "arg1" : {
+          "type" : "string"
+        },
+        "arg2" : {
+          "type" : "string"
+        }
+      },
+      "type" : "object"
+    },
+    "registerWithRemoteId" : {
+      "title" : "registerWithRemoteId",
+      "required" : [ "arg0", "arg1", "arg2" ],
+      "properties" : {
+        "arg0" : {
+          "$ref" : "#/definitions/ns17_RegistrationAuthority"
+        },
+        "arg1" : {
+          "$ref" : "#/definitions/ns17_Order"
+        },
+        "arg2" : {
+          "$ref" : "#/definitions/ns17_Signature"
+        }
+      },
+      "type" : "object"
+    },
+    "registerWithRemoteIdResponse" : {
+      "title" : "registerWithRemoteIdResponse",
+      "required" : [ "response" ],
+      "properties" : {
+        "response" : {
+          "$ref" : "#/definitions/tns_registerResult"
+        }
+      },
+      "type" : "object"
+    },
+    "tns_statusResult" : {
+      "title" : "tns_statusResult",
+      "description" : "",
+      "properties" : {
+        "orderStatus" : {
+          "$ref" : "#/definitions/ns17_OrderStatus"
+        },
+        "identificationStatus" : {
+          "$ref" : "#/definitions/ns17_IdentificationStatus"
+        },
+        "ErrorMessage" : {
+          "type" : "string"
+        }
+      },
+      "type" : "object"
+    },
+    "ns17_Order" : {
+      "title" : "ns17_Order",
+      "description" : "",
+      "required" : [ "SignedGTC", "Payment", "Product", "CodeChannel" ],
+      "properties" : {
+        "Number" : {
+          "type" : "string"
+        },
+        "Archive" : {
+          "type" : "string"
+        },
+        "SignedGTC" : {
+          "example" : false,
+          "default" : "false",
+          "type" : "boolean"
+        },
+        "Payment" : {
+          "$ref" : "#/definitions/ns17_Payment"
+        },
+        "Product" : {
+          "$ref" : "#/definitions/ns17_Product"
+        },
+        "CodeChannel" : {
+          "$ref" : "#/definitions/ns17_Delivery"
+        },
+        "ClientSignature" : {
+          "$ref" : "#/definitions/ns17_Signature"
+        },
+        "TutorSignature" : {
+          "$ref" : "#/definitions/ns17_Signature"
+        }
+      },
+      "type" : "object"
+    },
+    "ns17_Profile" : {
+      "title" : "ns17_Profile",
+      "description" : "",
+      "example" : "PRIVATE",
+      "type" : "string"
+    },
+    "getStatusResponse" : {
+      "title" : "getStatusResponse",
+      "required" : [ "response" ],
+      "properties" : {
+        "response" : {
+          "$ref" : "#/definitions/tns_statusResult"
+        }
+      },
+      "type" : "object"
+    },
+    "getProduct" : {
+      "title" : "getProduct",
+      "required" : [ "arg0", "arg1" ],
+      "properties" : {
+        "arg0" : {
+          "$ref" : "#/definitions/ns17_RegistrationAuthority"
+        },
+        "arg1" : {
+          "type" : "string"
+        }
+      },
+      "type" : "object"
+    },
+    "getTemplateResponse" : {
+      "title" : "getTemplateResponse",
+      "required" : [ "response" ],
+      "properties" : {
+        "response" : {
+          "$ref" : "#/definitions/TemplateResult"
+        }
+      },
+      "type" : "object"
+    },
+    "getTemplate" : {
+      "title" : "getTemplate",
+      "required" : [ "arg0", "arg1", "arg2", "arg3" ],
+      "properties" : {
+        "arg0" : {
+          "$ref" : "#/definitions/ns17_RegistrationAuthority"
+        },
+        "arg1" : {
+          "$ref" : "#/definitions/SignatureTypeEnum"
+        },
+        "arg2" : {
+          "description" : "",
+          "type" : "string"
+        },
+        "arg3" : {
+          "description" : "",
+          "type" : "boolean"
+        }
+      },
+      "type" : "object"
+    },
+    "tns_reportResult" : {
+      "title" : "tns_reportResult",
+      "description" : "",
+      "properties" : {
+        "Report" : {
+          "format" : "binary",
+          "type" : "string"
+        },
+        "ErrorMessage" : {
+          "type" : "string"
+        }
+      },
+      "type" : "object"
+    },
+    "ns17_Organisation" : {
+      "title" : "ns17_Organisation",
+      "description" : "",
+      "required" : [ "Name", "Country" ],
+      "properties" : {
+        "Name" : {
+          "type" : "string"
+        },
+        "Country" : {
+          "type" : "string"
+        },
+        "Rcsl" : {
+          "type" : "string"
+        },
+        "Tva" : {
+          "type" : "string"
+        },
+        "Other" : {
+          "type" : "string"
+        },
+        "Department" : {
+          "type" : "string"
+        }
+      },
+      "type" : "object"
+    },
+    "ns17_Payment" : {
+      "title" : "ns17_Payment",
+      "description" : "",
+      "required" : [ "Mode" ],
+      "properties" : {
+        "Mode" : {
+          "$ref" : "#/definitions/ns17_PaymentMode"
+        },
+        "Voucher" : {
+          "type" : "string"
+        }
+      },
+      "type" : "object"
+    },
+    "ns17_IdentificationStatus" : {
+      "title" : "ns17_IdentificationStatus",
+      "description" : "",
+      "example" : "INITIALIZED",
+      "type" : "string"
+    },
+    "ns17_Certificate" : {
+      "title" : "ns17_Certificate",
+      "description" : "",
+      "properties" : {
+        "serial" : {
+          "type" : "string"
+        },
+        "issuerDN" : {
+          "type" : "string"
+        },
+        "encoded" : {
+          "format" : "binary",
+          "type" : "string"
+        }
+      },
+      "type" : "object"
+    },
+    "tns_registerResult" : {
+      "title" : "tns_registerResult",
+      "description" : "",
+      "properties" : {
+        "OrderNumber" : {
+          "type" : "string"
+        },
+        "ErrorMessage" : {
+          "type" : "string"
+        }
+      },
+      "type" : "object"
+    },
+    "ns17_RegistrationAuthority" : {
+      "title" : "ns17_RegistrationAuthority",
+      "description" : "",
+      "required" : [ "NetworkID", "OperatorID" ],
+      "properties" : {
+        "NetworkID" : {
+          "type" : "string"
+        },
+        "OperatorID" : {
+          "type" : "string"
+        }
+      },
+      "type" : "object"
+    },
+    "ns17_Address" : {
+      "title" : "ns17_Address",
+      "description" : "",
+      "required" : [ "StreetNO", "Street1", "PostalCode", "Locality", "Country" ],
+      "properties" : {
+        "Organisation" : {
+          "type" : "string"
+        },
+        "StreetNO" : {
+          "type" : "string"
+        },
+        "Street1" : {
+          "type" : "string"
+        },
+        "Street2" : {
+          "type" : "string"
+        },
+        "PostalCode" : {
+          "type" : "string"
+        },
+        "Locality" : {
+          "type" : "string"
+        },
+        "Country" : {
+          "type" : "string"
+        }
+      },
+      "type" : "object"
+    },
+    "getIdentificationReportResponse" : {
+      "title" : "getIdentificationReportResponse",
+      "required" : [ "response" ],
+      "properties" : {
+        "response" : {
+          "$ref" : "#/definitions/tns_reportResult"
+        }
+      },
+      "type" : "object"
+    },
+    "TemplateResult" : {
+      "title" : "templateResult",
+      "description" : "",
+      "properties" : {
+        "template" : {
+          "description" : "",
+          "type" : "string"
+        },
+        "ErrorMessage" : {
+          "description" : "",
+          "type" : "string"
+        }
+      },
+      "type" : "object"
+    },
+    "ns17_Signature" : {
+      "title" : "ns17_Signature",
+      "description" : "",
+      "required" : [ "Text", "Language", "Certificate", "Encoding" ],
+      "properties" : {
+        "Text" : {
+          "type" : "string"
+        },
+        "Language" : {
+          "example" : "FR",
+          "default" : "FR",
+          "type" : "string"
+        },
+        "Certificate" : {
+          "$ref" : "#/definitions/ns17_Certificate"
+        },
+        "Encoding" : {
+          "format" : "binary",
+          "type" : "string"
+        }
+      },
+      "type" : "object"
+    },
+    "ns17_OrderStatus" : {
+      "title" : "ns17_OrderStatus",
+      "description" : "",
+      "example" : "WAITING",
+      "type" : "string"
+    },
+    "ns17_Subject" : {
+      "title" : "ns17_Subject",
+      "description" : "",
+      "required" : [ "SurName", "GivenName", "BirthDate", "Nationality" ],
+      "properties" : {
+        "SurName" : {
+          "type" : "string"
+        },
+        "GivenName" : {
+          "type" : "string"
+        },
+        "BirthDate" : {
+          "format" : "date",
+          "type" : "string"
+        },
+        "Email1" : {
+          "type" : "string"
+        },
+        "Email2" : {
+          "type" : "string"
+        },
+        "Organisation" : {
+          "$ref" : "#/definitions/ns17_Organisation"
+        },
+        "Nationality" : {
+          "type" : "string"
+        },
+        "BirthPlace" : {
+          "type" : "string"
+        },
+        "PreferredLanguage" : {
+          "type" : "string"
+        },
+        "IdDocType" : {
+          "type" : "string"
+        }
+      },
+      "type" : "object"
+    }
+  },
+  "securityDefinitions" : {
+    "API Key" : {
+      "type" : "apiKey",
+      "description" : "API Key",
+      "name" : "X-Bgl-Api-key",
+      "in" : "header"
+    }
+  },
+  "security" : [ {
+    "API Key" : [ ]
+  } ],
+  "info" : {
+    "title" : "LrsV3",
+    "description" : "",
+    "version" : "1.2"
+  },
+  "x-axway" : {
+    "corsEnabled" : true,
+    "basePaths" : [ "" ],
+    "serviceType" : "rest",
+    "deprecated" : false,
+    "tags" : {
+      "API_GIT_VERSION" : [ "@API_GIT_VERSION@" ],
+      "CA_API" : [ "MSE-0049" ]
+    },
+    "image" : "/api/portal/v1.3/discovery/swagger/apis/56b9cb6d-0215-49eb-aade-c3d1c3c5411f/image"
+  }
+}
