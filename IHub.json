@@ -5,6 +5,11 @@
     "title": "iHub subscriptions API",
     "contact": {
       "email": "robin.charlier@ext.i-hub.com"
+    },
+	"x-logo": {
+      "url": "i-Hub.jpg",
+      "backgroundColor": "#FFFFFF",
+      "altText": "Luxtrust logo"
     }
   },
   "tags": [
