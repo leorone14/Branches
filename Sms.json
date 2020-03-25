@@ -3,7 +3,12 @@
   "info": {
     "version": "1.0",
     "title": "Sms",
-    "contact": {}
+    "contact": {},
+	"x-logo": {
+      "url": "retarus.png",
+      "backgroundColor": "#FFFFFF",
+      "altText": "Retarus logo"
+    }
   },
   "host": "sms4a.retarus.com",
   "basePath": "/rest/v1",

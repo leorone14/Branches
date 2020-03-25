@@ -724,7 +724,12 @@
   "info" : {
     "title" : "LrsV3",
     "description" : "",
-    "version" : "1.2"
+    "version" : "1.2",
+	"x-logo": {
+      "url": "luxtrust.png",
+      "backgroundColor": "#FFFFFF",
+      "altText": "Luxtrust logo"
+    }
   },
   "x-axway" : {
     "corsEnabled" : true,

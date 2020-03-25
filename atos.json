@@ -2,7 +2,12 @@
   "swagger": "2.0",
   "info": {
     "version": "1.1",
-    "title": "acsWsClientService"
+    "title": "acsWsClientService",
+	"x-logo": {
+      "url": "atos.png",
+      "backgroundColor": "#FFFFFF",
+      "altText": "Atos logo"
+    }
   },
   "host": "tests-lux-ws.aw.atos.net",
   "basePath": "/ws/enrolment",
